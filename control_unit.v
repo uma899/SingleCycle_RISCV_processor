@@ -1,0 +1,284 @@
+/*
+Inputs:
+opcode [5:0]: The 6-bit opcode field of the current instruction (bits 31-26).
+funct [5:0]: The 6-bit function field of the current instruction (bits 5-0). This is primarily used for R-type instructions.
+zero_flag: A 1-bit signal from the ALU, indicating if the ALU's result was zero. This is crucial for beq (branch if equal) instructions.
+
+Outputs (Control Signals): These are all 1-bit signals (unless otherwise specified) that control the behavior of other modules. Their logic will be derived from the input opcode and funct fields.
+reg_dst: (To RegDst MUX) Selects the destination register for write-back.
+0: write to rt (for I-type like lw, addi)
+1: write to rd (for R-type like add, sub)
+jump: (To PC Update Logic) Enables a jump instruction.
+branch: (To PC Update Logic) Enables a branch instruction.
+mem_read_en: (To Data Memory) Enables a read from Data Memory.
+mem_to_reg: (To MemtoReg MUX) Selects the data source for Register File write-back.
+0: write ALU result to register
+1: write Data Memory read data to register
+alu_op [X:0]: (To ALU Control Unit - if separate, or directly to ALU) Specifies the general type of operation for the ALU (e.g., R-type, lw/sw, beq). The number of bits X+1 depends on how you categorize ALU operations. A common scheme uses 2 bits to distinguish between load/store, branch, and R-type operations.
+mem_write_en: (To Data Memory) Enables a write to Data Memory.
+alu_src: (To ALUSrc MUX) Selects the second operand for the ALU.
+0: Read_Data2 from Register File
+1: Sign_Extended_Immediate
+reg_write_en: (To Register File) Enables a write to the Register File.
+*/
+
+/*module control_unit (
+    input [5:0] opcode, funct,
+    input zero_flag,
+    output reg reg_dst,        // is 1 only for S type
+    output reg jump, branch,
+    output reg mem_read_en,
+    output reg mem_to_reg,
+    output reg [2:0] alu_op,
+    output reg  mem_write_en,
+    output reg alu_src,
+    output reg reg_write_en
+);
+
+
+
+    always @(*) begin
+
+        
+        case(opcode):
+            7'b0110011: begin   // R-type
+                jump = 0;
+                reg_dst = 1;
+                branch = 0;
+                mem_read_en = 1;
+                mem_to_reg = 0;
+                mem_write_en = 0;
+                alu_src = 0;
+                reg_write_en = 1;
+            end
+
+// I type begin 
+            7'b0010011: begin   // Arithmetic/Logical Immediate (ADDI, XORI, ORI, ANDI, SLLI):
+                jump = 0;
+                reg_dst = 1;
+                branch = 0;
+                mem_read_en = 1;
+                mem_to_reg = 0;
+                mem_write_en = 0;
+                alu_src = 1;
+                reg_write_en = 1;
+            end
+
+            7'b0000011: begin // Load Instructions (LW, LH, LB, LHU, LBU)
+                jump = 0;
+                reg_dst = 0;
+                branch = 0;
+                mem_read_en = 1;
+                mem_to_reg = 1;
+                mem_write_en = 0;
+                alu_src = 1;
+                reg_write_en = 1;
+            end
+
+             7'b1100111: begin // Jump And Link Register (JALR)
+                jump = 1;
+                reg_dst = 1;
+                branch = 0;
+                mem_read_en = 0;
+            end 
+// I type end 
+            7'b0100011: begin   // S-type
+                jump = 0;
+                reg_dst = 0;
+                branch = 0;
+                mem_read_en = 0;
+                mem_to_reg = 1;
+                mem_write_en = 1;
+                alu_src = 1;
+                reg_write_en = 1;
+            end
+
+            7'b1100011: begin   // Branch Instructions (BEQ, BNE, BLT, BGE, BLTU, BGEU)
+                jump = 1;
+                reg_dst = 1;
+                branch = 1;
+                mem_read_en = 0;
+                mem_to_reg = 0;
+                mem_write_en = 0;
+                alu_src = 0;
+                reg_write_en = 0;
+            end
+
+            7'b1101111: begin   // Jump And Link (JAL)
+                jump = 1;
+                reg_dst = 1;
+                branch = 0;
+                mem_read_en = 0;
+                mem_to_reg = 0;
+                mem_write_en = 0;
+                alu_src = 0;
+                reg_write_en = 0;
+            end
+
+            default: begin
+                
+            end
+        endcase
+    end        
+
+    always @(*) begin   // I think i should use my own ISA for this
+        case(funct)
+            7'b000000:
+                alu_op = 3'b000;
+            7'b000001:
+                alu_op = 3'b001;
+            7'b000010:
+                alu_op = 3'b010;
+            7'b000011:
+                alu_op = 3'b011;
+            7'b000100:
+                alu_op = 3'b100;
+            7'b000101:
+                alu_op = 3'b101;
+            7'b000110:
+                alu_op = 3'b110;
+            7'b000111:
+                alu_op = 3'b111;                                                                                                                
+        endcase
+    end                
+
+    
+//endmodule
+
+
+*/
+
+
+
+module control_unit (
+    input  [6:0] opcode,
+    //input  [5:0] funct, // funct is used only for R-type instructions
+    //input  zero_flag,   // Used by PC update logic, not directly by control outputs here
+
+    output reg reg_dst,        // 1 for R-type (rd), 0 for I-type (rt)
+    output reg jump,
+    output reg branch,
+    output reg mem_read_en,
+    output reg mem_to_reg,     // 1 for Load, 0 for ALU result
+    output reg [1:0] alu_op,   // Using 2 bits for higher-level ALU operation type
+                                // (e.g., 00: R-type, 01: load/store, 10: branch, etc.)
+    output reg mem_write_en,
+    output reg alu_src,        // 1 for immediate, 0 for register read data2
+    output reg reg_write_en
+);
+
+    // All outputs must have a default value to prevent latches
+    // Initialize to 0 (de-asserted) or a safe default
+    always @(*) begin
+        // Default values for all control signals
+        reg_dst        = 1'b0;
+        jump           = 1'b0;
+        branch         = 1'b0;
+        mem_read_en    = 0'b0;
+        mem_to_reg     = 1'b0;
+        alu_op         = 2'b00; // Default ALU operation (e.g., for R-type base)
+        mem_write_en   = 0'b0;
+        alu_src        = 1'b0;
+        reg_write_en   = 1'b0;
+
+        case (opcode)
+            // R-TYPE (ADD, SUB, AND, OR, XOR, SLL, SRL, SLT etc. - all have opcode 7'b011001)
+            7'b0110011: begin // R-type instructions (e.g., add, sub, and, or, xor, sll, srl, slt)
+                reg_dst        = 1'b1;     // Destination is rd (Instruction[15:11])
+                alu_src        = 1'b0;     // Second ALU operand comes from Read_Data2
+                reg_write_en   = 1'b1;     // Write result back to register file
+                alu_op         = 2'b00;    // Signal to ALU_Control that it's an R-type operation
+                                            // The ALU_Control will then use 'funct'
+                mem_read_en    = 0'b0;                                            
+
+                $display("R type - from CU");
+            end
+
+            // I-TYPE (Arithmetic/Logical Immediate - ADDI, XORI, ORI, ANDI, SLLI, SRLI, SRAI, SLTI, SLTUI)
+            7'b0010011: begin
+                reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
+                alu_src        = 1'b1;     // Second ALU operand comes from sign-extended immediate
+                reg_write_en   = 1'b1;     // Write result back to register file
+                alu_op         = 2'b01;    // Signal for I-type ALU operation (e.g., ADD for ADDI)
+                                            // ALU_Control will use funct3 for actual operation
+            end
+
+            // LOAD TYPE (LW, LH, LB, LHU, LBU - all have opcode 7'b000001)
+            7'b0000011: begin
+                reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
+                alu_src        = 1'b1;     // ALU calculates address: base_reg + sign_extended_immediate
+                mem_read_en    = 1'b1;     // Enable Data Memory read
+                mem_to_reg     = 1'b1;     // Write data from memory to register
+                reg_write_en   = 1'b1;     // Enable Register File write
+                alu_op         = 2'b01;    // ALU performs ADD for address calculation
+
+                $display("L type - from CU");
+            end
+
+            // S-TYPE (Store Instructions - SW, SH, SB - all have opcode 7'b010001)
+            7'b0100011: begin
+                alu_src        = 1'b1;     // ALU calculates address: base_reg + sign_extended_immediate
+                mem_write_en   = 1'b1;     // Enable Data Memory write
+                reg_write_en   = 1'b0;     // No register write for store instructions
+                alu_op         = 2'b01;    // ALU performs ADD for address calculation
+
+                $display("S type - from CU");
+            end
+
+            // B-TYPE (Branch Instructions - BEQ, BNE, BLT, BGE etc. - all have opcode 7'b110001)
+            7'b1100011: begin
+                branch         = 1'b1;     // Enable branch logic (conditional on Zero flag)
+                alu_src        = 1'b0;     // ALU performs subtraction (Rs1 - Rs2) to set Zero flag for BEQ/BNE
+                                            // Or comparison for BLT/BGE
+                reg_write_en   = 1'b0;     // No register write for branch instructions
+                alu_op         = 2'b10;    // Signal for Branch ALU operation (e.g., SUB for equality check)
+            end
+
+            // J-TYPE (JAL - Jump And Link - opcode 7'b110111)
+            7'b1101111: begin
+                jump           = 1'b1;     // Enable jump logic
+                reg_dst        = 1'b1;     // Write PC+4 to rd (R31 for MIPS, or specific rd for RISC-V JAL)
+                reg_write_en   = 1'b1;     // Write PC+4 to link register (e.g., x1 for RISC-V)
+                alu_op         = 2'b00;    // No ALU operation needed, but set a default
+                                            // Or use a specific code if ALU needs to pass PC+4
+            end
+
+            // JALR (Jump And Link Register - opcode 7'b110011 -- similar to I-type ALU)
+            // If you implement JALR, its opcode is the same as I-type LOAD (0000011) but with funct3.
+            // In RISC-V, JALR uses opcode 7'b110011.
+            // If you have JALR, its RegWrite is 1, RegDst is 0 (rt), ALUSrc is 1 (immediate),
+            // and ALUOp will be ADD (for address calculation, or just pass PC+4 for RegFile).
+            // Example if you choose to support JALR:
+            /*
+            7'b110011: begin // JALR
+                jump           = 1'b1;     // Enable jump logic
+                reg_dst        = 1'b0;     // Write PC+4 to rt
+                alu_src        = 1'b1;     // ALU for address calculation: base + imm
+                reg_write_en   = 1'b1;     // Write PC+4 to link register
+                alu_op         = 2'b01;    // ALU operation for address (e.g., ADD for base + offset)
+            end
+            */
+
+            default: begin
+                // All signals remain at their default (de-asserted) values.
+                // This is crucial to prevent inference of latches.
+                // For unknown/unsupported opcodes, no operation should occur.
+                $display("Unknown Opcode - Control Unit");
+            end
+        endcase
+    end
+
+    // ALU_Control logic (can be a separate module or integrated here)
+    // This part determines the specific ALU operation based on alu_op from above
+    // and funct field for R-type, or funct3 for I/S/B types.
+    // For simplicity, let's keep it here for now, defining your ALU's 3-bit control.
+    // NOTE: This now drives alu_op in a separate always block (which is allowed if alu_op is a wire)
+    // BUT since alu_op is a 'reg' AND driven in the main block, this creates a conflict.
+    // The solution is to have ALU_Control be a separate module, or merge this logic.
+
+    // Let's assume you will have a separate ALU_Control module,
+    // and this module's 'alu_op' output is a higher-level code.
+    // So, I'll remove the second always block from this module.
+    // Your ALU's 'alu_control_in' will be derived from THIS 'alu_op' and 'funct' elsewhere.
+
+endmodule
