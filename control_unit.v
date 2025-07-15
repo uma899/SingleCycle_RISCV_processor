@@ -1,159 +1,5 @@
-/*
-Inputs:
-opcode [5:0]: The 6-bit opcode field of the current instruction (bits 31-26).
-funct [5:0]: The 6-bit function field of the current instruction (bits 5-0). This is primarily used for R-type instructions.
-zero_flag: A 1-bit signal from the ALU, indicating if the ALU's result was zero. This is crucial for beq (branch if equal) instructions.
-
-Outputs (Control Signals): These are all 1-bit signals (unless otherwise specified) that control the behavior of other modules. Their logic will be derived from the input opcode and funct fields.
-reg_dst: (To RegDst MUX) Selects the destination register for write-back.
-0: write to rt (for I-type like lw, addi)
-1: write to rd (for R-type like add, sub)
-jump: (To PC Update Logic) Enables a jump instruction.
-branch: (To PC Update Logic) Enables a branch instruction.
-mem_read_en: (To Data Memory) Enables a read from Data Memory.
-mem_to_reg: (To MemtoReg MUX) Selects the data source for Register File write-back.
-0: write ALU result to register
-1: write Data Memory read data to register
-alu_op [X:0]: (To ALU Control Unit - if separate, or directly to ALU) Specifies the general type of operation for the ALU (e.g., R-type, lw/sw, beq). The number of bits X+1 depends on how you categorize ALU operations. A common scheme uses 2 bits to distinguish between load/store, branch, and R-type operations.
-mem_write_en: (To Data Memory) Enables a write to Data Memory.
-alu_src: (To ALUSrc MUX) Selects the second operand for the ALU.
-0: Read_Data2 from Register File
-1: Sign_Extended_Immediate
-reg_write_en: (To Register File) Enables a write to the Register File.
-*/
-
-/*module control_unit (
-    input [5:0] opcode, funct,
-    input zero_flag,
-    output reg reg_dst,        // is 1 only for S type
-    output reg jump, branch,
-    output reg mem_read_en,
-    output reg mem_to_reg,
-    output reg [2:0] alu_op,
-    output reg  mem_write_en,
-    output reg alu_src,
-    output reg reg_write_en
-);
-
-
-
-    always @(*) begin
-
-        
-        case(opcode):
-            7'b0110011: begin   // R-type
-                jump = 0;
-                reg_dst = 1;
-                branch = 0;
-                mem_read_en = 1;
-                mem_to_reg = 0;
-                mem_write_en = 0;
-                alu_src = 0;
-                reg_write_en = 1;
-            end
-
-// I type begin 
-            7'b0010011: begin   // Arithmetic/Logical Immediate (ADDI, XORI, ORI, ANDI, SLLI):
-                jump = 0;
-                reg_dst = 1;
-                branch = 0;
-                mem_read_en = 1;
-                mem_to_reg = 0;
-                mem_write_en = 0;
-                alu_src = 1;
-                reg_write_en = 1;
-            end
-
-            7'b0000011: begin // Load Instructions (LW, LH, LB, LHU, LBU)
-                jump = 0;
-                reg_dst = 0;
-                branch = 0;
-                mem_read_en = 1;
-                mem_to_reg = 1;
-                mem_write_en = 0;
-                alu_src = 1;
-                reg_write_en = 1;
-            end
-
-             7'b1100111: begin // Jump And Link Register (JALR)
-                jump = 1;
-                reg_dst = 1;
-                branch = 0;
-                mem_read_en = 0;
-            end 
-// I type end 
-            7'b0100011: begin   // S-type
-                jump = 0;
-                reg_dst = 0;
-                branch = 0;
-                mem_read_en = 0;
-                mem_to_reg = 1;
-                mem_write_en = 1;
-                alu_src = 1;
-                reg_write_en = 1;
-            end
-
-            7'b1100011: begin   // Branch Instructions (BEQ, BNE, BLT, BGE, BLTU, BGEU)
-                jump = 1;
-                reg_dst = 1;
-                branch = 1;
-                mem_read_en = 0;
-                mem_to_reg = 0;
-                mem_write_en = 0;
-                alu_src = 0;
-                reg_write_en = 0;
-            end
-
-            7'b1101111: begin   // Jump And Link (JAL)
-                jump = 1;
-                reg_dst = 1;
-                branch = 0;
-                mem_read_en = 0;
-                mem_to_reg = 0;
-                mem_write_en = 0;
-                alu_src = 0;
-                reg_write_en = 0;
-            end
-
-            default: begin
-                
-            end
-        endcase
-    end        
-
-    always @(*) begin   // I think i should use my own ISA for this
-        case(funct)
-            7'b000000:
-                alu_op = 3'b000;
-            7'b000001:
-                alu_op = 3'b001;
-            7'b000010:
-                alu_op = 3'b010;
-            7'b000011:
-                alu_op = 3'b011;
-            7'b000100:
-                alu_op = 3'b100;
-            7'b000101:
-                alu_op = 3'b101;
-            7'b000110:
-                alu_op = 3'b110;
-            7'b000111:
-                alu_op = 3'b111;                                                                                                                
-        endcase
-    end                
-
-    
-//endmodule
-
-
-*/
-
-
-
 module control_unit (
     input  [6:0] opcode,
-    //input  [5:0] funct, // funct is used only for R-type instructions
-    //input  zero_flag,   // Used by PC update logic, not directly by control outputs here
 
     output reg reg_dst,        // 1 for R-type (rd), 0 for I-type (rt)
     output reg jump,
@@ -228,10 +74,11 @@ module control_unit (
             // B-TYPE (Branch Instructions - BEQ, BNE, BLT, BGE etc. - all have opcode 7'b110001)
             7'b1100011: begin
                 branch         = 1'b1;     // Enable branch logic (conditional on Zero flag)
-                alu_src        = 1'b0;     // ALU performs subtraction (Rs1 - Rs2) to set Zero flag for BEQ/BNE
-                                            // Or comparison for BLT/BGE
+               // alu_src        = 1'b0;     // ALU performs subtraction (Rs1 - Rs2) to set Zero flag for BEQ/BNE
                 reg_write_en   = 1'b0;     // No register write for branch instructions
                 alu_op         = 2'b10;    // Signal for Branch ALU operation (e.g., SUB for equality check)
+
+                $display("B type - from CU");
             end
 
             // J-TYPE (JAL - Jump And Link - opcode 7'b110111)

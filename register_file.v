@@ -33,6 +33,8 @@ module register_file (
             temp_reg[2] = 32'd15;
             temp_reg[7] = 32'd0;
             temp_reg[8] = 32'd4;
+            
+            temp_reg[22] = 32'd19;
 
             temp_reg[16] = 32'h0000000c;
 
@@ -48,7 +50,7 @@ module register_file (
             end
         end
 
-        else $display("Unknown - Reg file");
+        //else $display("Unknown - Reg file");
     end
 
     // 3. Asynchronous/Combinational Read Logic

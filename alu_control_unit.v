@@ -116,17 +116,19 @@ module alu_control_unit (
     input [1:0] alu_op,   // High-level ALU operation from main Control Unit
     input [2:0] funct3,   // funct3 field from instruction (bits 14:12)
     input [6:0] funct7,   // funct7 field from instruction (bits 31:25)
-    output reg [2:0] alu_select // Final 3-bit control for the ALU module
+    output reg [3:0] alu_select // Final 3-bit control for the ALU module
 );
 
-localparam ALU_SLT   = 3'b000;
-localparam ALU_ADD   = 3'b001;
-localparam ALU_SUB   = 3'b010;
-localparam ALU_AND   = 3'b011;
-localparam ALU_OR    = 3'b100;
-localparam ALU_XOR   = 3'b101;
-localparam ALU_SLL   = 3'b110;
-localparam ALU_SRL   = 3'b111;
+localparam ALU_SLT   = 4'b0000;
+localparam ALU_ADD   = 4'b0001;
+localparam ALU_SUB   = 4'b0010;
+localparam ALU_AND   = 4'b0011;
+localparam ALU_OR    = 4'b0100;
+localparam ALU_XOR   = 4'b0101;
+localparam ALU_SLL   = 4'b0110;
+localparam ALU_SRL   = 4'b0111;
+
+localparam ALU_EQ    = 4'b1000;
 
     always @(*) begin
         if(alu_op == 2'b00) begin
@@ -182,6 +184,7 @@ localparam ALU_SRL   = 3'b111;
             alu_select = ALU_ADD;
             $display("Calculated offset for Load - alu_CU");
         end else if(alu_op == 2'b10) begin
+            alu_select = ALU_EQ;
             $display("Branch - alu_CU");
         end else begin
             $display("Unknown Task - alu_CU");

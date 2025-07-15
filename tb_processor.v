@@ -14,7 +14,10 @@ module processor_tb;
     );
 
     // Clock Generation
-    always #10 clk = ~clk; // Clock period of 10ns (5ns high, 5ns low)
+    always begin
+        #10 clk = ~clk; // Clock period of 10ns (5ns high, 5ns low)
+        $display("-------------------CLK Change-----------------");
+    end
 
     // Initial Stimulus
     initial begin
@@ -33,7 +36,7 @@ module processor_tb;
     end
 
     // Monitor signals (for debugging and verification)
-    initial begin/*
+    initial begin
         // Dump waves for GTKWave
         $dumpfile("processor.vcd");
         $dumpvars(0, processor_tb); // Dump all signals in the testbench
@@ -50,26 +53,10 @@ module processor_tb;
         $monitor("%0t | 0x%d | 0x%h | 0x%d | 0x%b | 0x%b ",
                  $time, dut.current_PC, dut.current_instr,
                  dut.alu_out, dut.alu_select, // Assuming x1, x2 are indices 1, 2
-                 dut.reg_write_en);*/
+                 dut.reg_write_en);
         
         //$monitor("%0t | 0x%d", $time, dut.current_PC)
 
     end
-
-    // Optional: Load instruction memory with a simple program
-    // Create a file named 'instr_mem.hex' in the same directory as your Verilog files.
-    // Example 'instr_mem.hex' content for:
-    // lui x1, 0x10000     (0x00010080)
-    // addi x2, x1, 0x5    (0x00508100)
-    // sw x2, 0(x1)        (0x00C0A023)
-    // lw x3, 0(x1)        (0x00002183)
-    // addi x0, x0, 0      (0x00000013) // NOP
-    /*
-    00010080
-    00508100
-    00C0A023
-    00002183
-    00000013
-    */
 
 endmodule

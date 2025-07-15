@@ -7,13 +7,23 @@ module processor (
     //wire [31:0] next_instr;
 
 
+
+wire [31:0] alu_out;   
+
+
+
+
     /* These have no work for now.. */
     wire branch, jump;
     wire zero_flag;
-    wire [31:0] branch_offset_shifted;
+    
     wire [25:0] jump_target_imm_26;
     /* These have no work for now.. */
 
+    wire [31:0] branch_offset_shifted;
+
+    
+    assign branch_offset_shifted = (alu_out == 32'b0) ? {32'd0} : {18'b0, current_instr[12],current_instr[7], current_instr[30:25], current_instr[11:8], 2'b00};
 
     pc_unit PCmain(
         clk, reset, 
@@ -56,7 +66,7 @@ module processor (
 
    
 
-    wire [31:0] alu_out;   
+    
     wire [31:0] read_data1_from_rf;
     wire [31:0] read_data2_from_rf;
 
@@ -80,7 +90,7 @@ module processor (
     assign operand2 = (alu_src) ? {20'd0, current_instr[31:20]} : read_data2_from_rf;
 
 
-    wire [2:0]alu_select;
+    wire [3:0]alu_select;
     wire zero;
 
     alu_control_unit ALU_CU(

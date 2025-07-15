@@ -3,11 +3,7 @@
 # Define the log file name
 set LOG_FILE_NAME "simulation_transcript.log"
 
-# --- Optional: Clean up previous log file (if you want a fresh log each time) ---
-if {[file exists $LOG_FILE_NAME]} {
-    file delete $LOG_FILE_NAME
-    puts "Deleted previous log file: $LOG_FILE_NAME"
-}
+
 
 # --- Start logging the transcript output to a file ---
 puts "Starting transcript logging to $LOG_FILE_NAME..."
@@ -47,15 +43,15 @@ puts "Compilation initiated. Check the transcript window for any errors (and now
 
 # --- 4. Start the simulation ---
 puts "Starting simulation of work.processor_tb..."
-vsim -t 50ns work.processor_tb
+vsim work.processor_tb
 
 # --- 5. Configure the Wave window (for GUI mode) ---
 puts "Adding signals to Wave window..."
-add wave -r /processor_tb/*
+add wave -position insertpoint sim:/processor_tb/*
 
 # --- 6. Run the simulation ---
 puts "Running simulation..."
-run -all
+run 250 ns
 
 # --- 7. Optional: Save waveform and exit ModelSim ---
 # Uncomment the lines below if you want to automatically save the waveform and exit ModelSim

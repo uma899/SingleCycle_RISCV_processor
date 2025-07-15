@@ -18,7 +18,7 @@ module programCounter (
         end
         else begin // This 'else' implies synchronous behavior for clock
             PC_out <= PC_next_in; // Non-blocking assignment - CORRECT for sequential logic
-            $display("PC increased to 0x%h at time %t", PC_next_in, $time); // Better display message
+            //$display("PC increased to 0x%h at time %t", PC_next_in, $time); // Better display message
         end
     end
 

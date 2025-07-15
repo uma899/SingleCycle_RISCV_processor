@@ -2,7 +2,7 @@
 # Creating and mapping 'work' library...
 # Compiling Verilog design files and testbench...
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:32:20 on Jun 26,2025
+# Start time: 17:37:24 on Jul 15,2025
 # vlog -reportprogress 300 -sv -mfcu alu_control_unit.v alu.v control_unit.v data_memory.v instruction_memory.v mux2_to_1.v pc_unit.v processor.v program_counter.v register_file.v sign_extender.v tb_PC.v tb_processor.v 
 # -- Compiling module alu_control_unit
 # -- Compiling module ALU
@@ -23,22 +23,14 @@
 # 	sign_extender
 # 	testbench_pc_unit
 # 	processor_tb
-# End time: 11:32:20 on Jun 26,2025, Elapsed time: 0:00:00
+# End time: 17:37:24 on Jul 15,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Compilation initiated. Check the transcript window for any errors (and now in simulation_transcript.log).
 # Starting simulation of work.processor_tb...
-# End time: 11:32:21 on Jun 26,2025, Elapsed time: 0:04:45
-# Errors: 0, Warnings: 0
-# ** Error: (vsim-3000) Invalid resolution limit (-t 50ns).
-# Use the -help option for complete vsim usage.
-# vsim -t 50ns work.processor_tb 
-# Error loading design
-# Error: Error loading design
-#        Pausing macro execution
-# MACRO ./s.tcl PAUSED at line 50
-vsim work.processor_tb
+# End time: 17:37:26 on Jul 15,2025, Elapsed time: 0:02:33
+# Errors: 0, Warnings: 2
 # vsim work.processor_tb 
-# Start time: 11:32:22 on Jun 26,2025
+# Start time: 17:37:26 on Jul 15,2025
 # Loading sv_std.std
 # Loading work.processor_tb
 # Loading work.processor
@@ -50,1074 +42,207 @@ vsim work.processor_tb
 # Loading work.alu_control_unit
 # Loading work.ALU
 # Loading work.data_memory
-# ** Warning: (vsim-3015) processor.v(104): [PCDPC] - Port size (32) does not match connection size (1) for port 'read_data_out'. The port definition is at: data_memory.v(6).
+# ** Warning: (vsim-3015) processor.v(114): [PCDPC] - Port size (32) does not match connection size (1) for port 'read_data_out'. The port definition is at: data_memory.v(6).
 #    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/MEMaccess File: data_memory.v
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:34:53 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v 
-# -- Compiling module data_memory
-# 
-# Top level modules:
-# 	data_memory
-# End time: 11:34:53 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:01 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu.v 
-# -- Compiling module ALU
-# 
-# Top level modules:
-# 	ALU
-# End time: 11:35:01 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu_control_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:01 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu_control_unit.v 
-# -- Compiling module alu_control_unit
-# 
-# Top level modules:
-# 	alu_control_unit
-# End time: 11:35:01 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/control_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:01 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/control_unit.v 
-# -- Compiling module control_unit
-# 
-# Top level modules:
-# 	control_unit
-# End time: 11:35:01 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:01 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v 
-# -- Compiling module data_memory
-# 
-# Top level modules:
-# 	data_memory
-# End time: 11:35:01 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/instruction_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:01 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/instruction_memory.v 
-# -- Compiling module instruction_memory
-# 
-# Top level modules:
-# 	instruction_memory
-# End time: 11:35:01 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/mux2_to_1.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:02 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/mux2_to_1.v 
-# -- Compiling module mux2_to_1
-# 
-# Top level modules:
-# 	mux2_to_1
-# End time: 11:35:02 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/pc_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:02 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/pc_unit.v 
-# -- Compiling module pc_unit
-# 
-# Top level modules:
-# 	pc_unit
-# End time: 11:35:02 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:02 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v 
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 11:35:02 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/program_counter.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:02 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/program_counter.v 
-# -- Compiling module programCounter
-# 
-# Top level modules:
-# 	programCounter
-# End time: 11:35:02 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/register_file.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:02 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/register_file.v 
-# -- Compiling module register_file
-# 
-# Top level modules:
-# 	register_file
-# End time: 11:35:02 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/sign_extender.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:03 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/sign_extender.v 
-# -- Compiling module sign_extender
-# 
-# Top level modules:
-# 	sign_extender
-# End time: 11:35:03 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_PC.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:03 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_PC.v 
-# -- Compiling module testbench_pc_unit
-# 
-# Top level modules:
-# 	testbench_pc_unit
-# End time: 11:35:03 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_processor.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:35:03 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_processor.v 
-# -- Compiling module processor_tb
-# 
-# Top level modules:
-# 	processor_tb
-# End time: 11:35:03 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim work.processor_tb
-# End time: 11:35:06 on Jun 26,2025, Elapsed time: 0:02:44
-# Errors: 1, Warnings: 1
-# vsim work.processor_tb 
-# Start time: 11:35:06 on Jun 26,2025
-# Loading sv_std.std
-# Loading work.processor_tb
-# Loading work.processor
-# Loading work.pc_unit
-# Loading work.programCounter
-# Loading work.instruction_memory
-# Loading work.control_unit
-# Loading work.register_file
-# Loading work.alu_control_unit
-# Loading work.ALU
-# Loading work.data_memory
-# ** Warning: (vsim-3015) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v(104): [PCDPC] - Port size (32) does not match connection size (1) for port 'read_data_out'. The port definition is at: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(6).
-#    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/MEMaccess File: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v
-add wave -position insertpoint sim:/processor_tb/*
-run
-# Instruction Memory loaded from instructions.mem
-# PC increased to 0xxxxxxxxx at time                    0
-# Unknown - Reg file
-# Error: Instruction memory address 0xxxxxxxxx out of bounds at time                    0
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unknown Task - alu_CU
-# Unkown case - alu_CU
-# ADD worked, result:          x
-# PC reset!
-# Reg File reset!
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Curr instr out: 0x008176b3
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# AND - alu_CU
-# R type - from CU
-# AND worked
-# PC increased to 0x00000004 at time                 4000
-# Reg File write at, 13
-# Curr instr out: 0x40810633
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# SUB - alu_CU
-# SUB worked
-# PC increased to 0x00000008 at time                10000
-# Reg File write at, 12
-# Curr instr out: 0x002405b3
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# ADD - alu_CU
-# x 8 read1 - Reg File 
-# x 2 read2 - Reg File 
-# ADD worked, result:         19
-# PC increased to 0x0000000c at time                30000
-# Reg File write at, 11
-# Curr instr out: 0x00082a03
-# x 8 read1 - Reg File 
-# x 2 read2 - Reg File 
-# x16 read1 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Mem read at address:          4, value at this location:          x
-# ADD worked, result:         12
-# Mem read at address:          0, value at this location:          x
-# Mem read at address:          3, value at this location:          x
-# PC increased to 0x00000010 at time                50000
-# Reg File write at, 20
-# Curr instr out: 0x002885b3
-# x16 read1 - Reg File 
-# ADD worked, result:         14
-# x17 read1 - Reg File 
-# x 2 read2 - Reg File 
-# Calculated offset for Load - alu_CU
-# R type - from CU
-# ADD - alu_CU
-# ADD worked, result:          x
-# PC increased to 0x00000014 at time                70000
-# Reg File write at, 11
-# Curr instr out: 0x0010a903
-# x17 read1 - Reg File 
-# x 2 read2 - Reg File 
-# x 1 read1 - Reg File 
-# x 1 read2 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Error: Data Memory Read Address 0xxxxxxxxx out of bounds (max address 0x003fffff) at time                70000
-# ADD worked, result:         11
-# Mem read at address:          0, value at this location:          x
-# Mem read at address:          2, value at this location:          x
-# PC increased to 0x00000018 at time                90000
-# Reg File write at, 18
-# Curr instr out: 0x012885b3
-# x 1 read1 - Reg File 
-# x 1 read2 - Reg File 
-# ADD worked, result:         28
-# x17 read1 - Reg File 
-# x18 read2 - Reg File 
-# Calculated offset for Load - alu_CU
-# R type - from CU
-# ADD - alu_CU
-# ADD worked, result:          x
-# PC increased to 0x0000001c at time               110000
-# Reg File write at, 11
-# Curr instr out: 0xxxxxxxxx
-# x x read1 - Reg File 
-# x x read2 - Reg File 
-# Unkown case - alu_CU
-# Unknown Opcode - Control Unit
-# ADD worked, result:          x
-# PC increased to 0x00000020 at time               130000
-# Unknown - Reg file
-# Error: Instruction memory address 0x00000020 out of bounds at time               130000
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unkown case - alu_CU
-# PC increased to 0x00000024 at time               150000
-# Reg File write at, 29
-# Error: Instruction memory address 0x00000024 out of bounds at time               150000
-# PC increased to 0x00000028 at time               170000
-# Reg File write at, 29
-# Error: Instruction memory address 0x00000028 out of bounds at time               170000
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:33 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu.v 
-# -- Compiling module ALU
-# 
-# Top level modules:
-# 	ALU
-# End time: 11:41:33 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu_control_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:33 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu_control_unit.v 
-# -- Compiling module alu_control_unit
-# 
-# Top level modules:
-# 	alu_control_unit
-# End time: 11:41:33 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/control_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:34 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/control_unit.v 
-# -- Compiling module control_unit
-# 
-# Top level modules:
-# 	control_unit
-# End time: 11:41:34 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:34 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v 
-# -- Compiling module data_memory
-# 
-# Top level modules:
-# 	data_memory
-# End time: 11:41:34 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/instruction_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:34 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/instruction_memory.v 
-# -- Compiling module instruction_memory
-# 
-# Top level modules:
-# 	instruction_memory
-# End time: 11:41:34 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/mux2_to_1.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:34 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/mux2_to_1.v 
-# -- Compiling module mux2_to_1
-# 
-# Top level modules:
-# 	mux2_to_1
-# End time: 11:41:34 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/pc_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:34 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/pc_unit.v 
-# -- Compiling module pc_unit
-# 
-# Top level modules:
-# 	pc_unit
-# End time: 11:41:34 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:34 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v 
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 11:41:34 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/program_counter.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:34 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/program_counter.v 
-# -- Compiling module programCounter
-# 
-# Top level modules:
-# 	programCounter
-# End time: 11:41:35 on Jun 26,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/register_file.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:35 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/register_file.v 
-# -- Compiling module register_file
-# 
-# Top level modules:
-# 	register_file
-# End time: 11:41:35 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/sign_extender.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:35 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/sign_extender.v 
-# -- Compiling module sign_extender
-# 
-# Top level modules:
-# 	sign_extender
-# End time: 11:41:35 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_PC.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:35 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_PC.v 
-# -- Compiling module testbench_pc_unit
-# 
-# Top level modules:
-# 	testbench_pc_unit
-# End time: 11:41:35 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_processor.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:41:35 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_processor.v 
-# -- Compiling module processor_tb
-# 
-# Top level modules:
-# 	processor_tb
-# End time: 11:41:35 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim work.processor_tb
-# End time: 11:41:38 on Jun 26,2025, Elapsed time: 0:06:32
-# Errors: 0, Warnings: 1
-# vsim work.processor_tb 
-# Start time: 11:41:38 on Jun 26,2025
-# Loading sv_std.std
-# Loading work.processor_tb
-# Loading work.processor
-# Loading work.pc_unit
-# Loading work.programCounter
-# Loading work.instruction_memory
-# Loading work.control_unit
-# Loading work.register_file
-# Loading work.alu_control_unit
-# Loading work.ALU
-# Loading work.data_memory
-# ** Warning: (vsim-3015) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v(104): [PCDPC] - Port size (32) does not match connection size (1) for port 'read_data_out'. The port definition is at: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(6).
-#    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/MEMaccess File: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v
-add wave -position insertpoint sim:/processor_tb/*
-run
-# Instruction Memory loaded from instructions.mem
-# PC increased to 0xxxxxxxxx at time                    0
-# Unknown - Reg file
-# Error: Instruction memory address 0xxxxxxxxx out of bounds at time                    0
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unknown Task - alu_CU
-# Unkown case - alu_CU
-# ADD worked, result:          x
-# PC reset!
-# Reg File reset!
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Curr instr out: 0x008176b3
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# AND - alu_CU
-# R type - from CU
-# AND worked
-# PC increased to 0x00000004 at time                 4000
-# Reg File write at, 13
-# Curr instr out: 0x40810633
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# SUB - alu_CU
-# SUB worked
-# PC increased to 0x00000008 at time                10000
-# Reg File write at, 12
-# Curr instr out: 0x002405b3
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# ADD - alu_CU
-# x 8 read1 - Reg File 
-# x 2 read2 - Reg File 
-# ADD worked, result:         19
-# PC increased to 0x0000000c at time                30000
-# Reg File write at, 11
-# Curr instr out: 0x00082a03
-# x 8 read1 - Reg File 
-# x 2 read2 - Reg File 
-# x16 read1 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Mem read at address:          4, value at this location:          x
-# ADD worked, result:         12
-# Mem read at address:          0, value at this location:          x
-# Mem read at address:          3, value at this location:          x
-# PC increased to 0x00000010 at time                50000
-# Reg File write at, 20
-# Curr instr out: 0x002885b3
-# x16 read1 - Reg File 
-# ADD worked, result:         14
-# x17 read1 - Reg File 
-# x 2 read2 - Reg File 
-# Calculated offset for Load - alu_CU
-# R type - from CU
-# ADD - alu_CU
-# ADD worked, result:          x
-# PC increased to 0x00000014 at time                70000
-# Reg File write at, 11
-# Curr instr out: 0x0010a903
-# x17 read1 - Reg File 
-# x 2 read2 - Reg File 
-# x 1 read1 - Reg File 
-# x 1 read2 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Error: Data Memory Read Address 0xxxxxxxxx out of bounds (max address 0x003fffff) at time                70000
-# ADD worked, result:         11
-# Mem read at address:          0, value at this location:          x
-# Mem read at address:          2, value at this location:          x
-# PC increased to 0x00000018 at time                90000
-# Reg File write at, 18
-# Curr instr out: 0x012885b3
-# x 1 read1 - Reg File 
-# x 1 read2 - Reg File 
-# ADD worked, result:         28
-# x17 read1 - Reg File 
-# x18 read2 - Reg File 
-# Calculated offset for Load - alu_CU
-# R type - from CU
-# ADD - alu_CU
-# ADD worked, result:          x
-# PC increased to 0x0000001c at time               110000
-# Reg File write at, 11
-# Curr instr out: 0xxxxxxxxx
-# x x read1 - Reg File 
-# x x read2 - Reg File 
-# Unkown case - alu_CU
-# Unknown Opcode - Control Unit
-# ADD worked, result:          x
-# PC increased to 0x00000020 at time               130000
-# Unknown - Reg file
-# Error: Instruction memory address 0x00000020 out of bounds at time               130000
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unkown case - alu_CU
-# PC increased to 0x00000024 at time               150000
-# Reg File write at, 29
-# Error: Instruction memory address 0x00000024 out of bounds at time               150000
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:45:16 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v 
-# -- Compiling module data_memory
-# ** Error: (vlog-13069) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(40): near "end": syntax error, unexpected end, expecting ';'.
-# ** Error: (vlog-13069) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(52): near "end": syntax error, unexpected end.
-# ** Error: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(60): (vlog-13161) unexpected '$display', expecting elaboration system task $fatal/$error/$warning/$info.
-# ** Error: (vlog-13069) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(61): near "end": syntax error, unexpected end.
-# ** Error: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(64): (vlog-13161) unexpected '$display', expecting elaboration system task $fatal/$error/$warning/$info.
-# ** Error: (vlog-13069) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(65): near "end": syntax error, unexpected end.
-# End time: 11:45:16 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 6, Warnings: 0
-# C:/intelFPGA/18.1/modelsim_ase/win32aloem/vlog failed.
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:45:32 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v 
-# -- Compiling module data_memory
-# 
-# Top level modules:
-# 	data_memory
-# End time: 11:45:32 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim work.processor_tb
-# End time: 11:45:35 on Jun 26,2025, Elapsed time: 0:03:57
-# Errors: 7, Warnings: 1
-# vsim work.processor_tb 
-# Start time: 11:45:35 on Jun 26,2025
-# Loading sv_std.std
-# Loading work.processor_tb
-# Loading work.processor
-# Loading work.pc_unit
-# Loading work.programCounter
-# Loading work.instruction_memory
-# Loading work.control_unit
-# Loading work.register_file
-# Loading work.alu_control_unit
-# Loading work.ALU
-# Loading work.data_memory
-# ** Warning: (vsim-3015) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v(104): [PCDPC] - Port size (32) does not match connection size (1) for port 'read_data_out'. The port definition is at: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(6).
-#    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/MEMaccess File: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v
-add wave -position insertpoint sim:/processor_tb/*
-run
+# Adding signals to Wave window...
+# Running simulation...
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 9 of file "instructions.mem". (Current address [8], address range [0:7])    : instruction_memory.v(10)
+#    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/instr
 # Instruction Memory loaded from instructions.mem
 # Program Memory loaded from program.mem
-# PC increased to 0xxxxxxxxx at time                    0
-# Unknown - Reg file
+# ----------------------------------------
+# Starting RISC-V Single-Cycle Processor Testbench
+# Time  | PC        | Curr.Instruction | Next.Instruction| Regs[x2]| ALU_Out   | Mem_Out
+# ------+-----------+-------------+---------+---------+-----------+---------
+# --------Current PC:          x
+# --------branch_target_address: x, branch_offset_shifted: 000000000000000000xxxxxxxxxxxx00---------
 # Error: Instruction memory address 0xxxxxxxxx out of bounds at time                    0
+# --------Current PC:          x
+# --------branch_target_address: x, branch_offset_shifted: 000000000000000000xxx0xxxxxxx000---------
 # x27 read1 - Reg File 
 # x10 read2 - Reg File 
 # Unknown Task - alu_CU
 # Unkown case - alu_CU
 # ADD worked, result:          x
+# 0 | 0x         x | 0xdeadbeef | 0x         x | 0x0001 | 0x1 
 # PC reset!
 # Reg File reset!
 # x27 read1 - Reg File 
 # x10 read2 - Reg File 
+# --------Current PC:          0
+# --------branch_target_address: x, branch_offset_shifted: 000000000000000000xxx0xxxxxxx000---------
 # Curr instr out: 0x008176b3
+# --------Current PC:          0
+# --------branch_target_address: x, branch_offset_shifted: 000000000000000000xx0000000xx000---------
 # x 2 read1 - Reg File 
 # x 8 read2 - Reg File 
 # AND - alu_CU
 # R type - from CU
 # AND worked
-# PC increased to 0x00000004 at time                 4000
-# Reg File write at, 13
-# Curr instr out: 0x40810633
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# SUB - alu_CU
-# SUB worked
-# PC increased to 0x00000008 at time                10000
-# Reg File write at, 12
-# Curr instr out: 0x002405b3
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# ADD - alu_CU
-# x 8 read1 - Reg File 
-# x 2 read2 - Reg File 
-# ADD worked, result:         19
-# PC increased to 0x0000000c at time                30000
-# Reg File write at, 11
-# Curr instr out: 0x00082a03
-# x 8 read1 - Reg File 
-# x 2 read2 - Reg File 
-# x16 read1 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Mem read at address:          4, value at this location:          1
-# ADD worked, result:         12
-# Mem read at address:          0, value at this location:          3
-# Mem read at address:          3, value at this location:         13
-# PC increased to 0x00000010 at time                50000
-# Reg File write at, 20
-# Curr instr out: 0x002885b3
-# x16 read1 - Reg File 
-# ADD worked, result:         14
-# x17 read1 - Reg File 
-# x 2 read2 - Reg File 
-# Calculated offset for Load - alu_CU
-# R type - from CU
-# ADD - alu_CU
-# ADD worked, result:          x
-# PC increased to 0x00000014 at time                70000
-# Reg File write at, 11
-# Curr instr out: 0x0010a903
-# x17 read1 - Reg File 
-# x 2 read2 - Reg File 
-# x 1 read1 - Reg File 
-# x 1 read2 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Error: Data Memory Read Address 0xxxxxxxxx out of bounds (max address 0x003fffff) at time                70000
-# ADD worked, result:         11
-# Mem read at address:          0, value at this location:          3
-# Mem read at address:          2, value at this location:          2
-# PC increased to 0x00000018 at time                90000
-# Reg File write at, 18
-# Curr instr out: 0x012885b3
-# x 1 read1 - Reg File 
-# x 1 read2 - Reg File 
-# ADD worked, result:         28
-# x17 read1 - Reg File 
-# x18 read2 - Reg File 
-# Calculated offset for Load - alu_CU
-# R type - from CU
-# ADD - alu_CU
-# ADD worked, result:          x
-# PC increased to 0x0000001c at time               110000
-# Reg File write at, 11
-# Curr instr out: 0xxxxxxxxx
-# x x read1 - Reg File 
-# x x read2 - Reg File 
-# Unkown case - alu_CU
-# Unknown Opcode - Control Unit
-# ADD worked, result:          x
-# PC increased to 0x00000020 at time               130000
-# Unknown - Reg file
-# Error: Instruction memory address 0x00000020 out of bounds at time               130000
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unkown case - alu_CU
-# PC increased to 0x00000024 at time               150000
-# Reg File write at, 29
-# Error: Instruction memory address 0x00000024 out of bounds at time               150000
-# PC increased to 0x00000028 at time               170000
-# Reg File write at, 29
-# Error: Instruction memory address 0x00000028 out of bounds at time               170000
-vsim work.processor_tb
-# End time: 11:50:36 on Jun 26,2025, Elapsed time: 0:05:01
-# Errors: 0, Warnings: 1
-# vsim work.processor_tb 
-# Start time: 11:50:36 on Jun 26,2025
-# Loading sv_std.std
-# Loading work.processor_tb
-# Loading work.processor
-# Loading work.pc_unit
-# Loading work.programCounter
-# Loading work.instruction_memory
-# Loading work.control_unit
-# Loading work.register_file
-# Loading work.alu_control_unit
-# Loading work.ALU
-# Loading work.data_memory
-# ** Warning: (vsim-3015) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v(104): [PCDPC] - Port size (32) does not match connection size (1) for port 'read_data_out'. The port definition is at: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(6).
-#    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/MEMaccess File: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v
-add wave -position insertpoint sim:/processor_tb/*
-run
-# Instruction Memory loaded from instructions.mem
-# Program Memory loaded from program.mem
-# PC increased to 0xxxxxxxxx at time                    0
-# Unknown - Reg file
-# Error: Instruction memory address 0xxxxxxxxx out of bounds at time                    0
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unknown Task - alu_CU
-# Unkown case - alu_CU
-# ADD worked, result:          x
-# PC reset!
-# Reg File reset!
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Curr instr out: 0x008176b3
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# AND - alu_CU
-# R type - from CU
-# AND worked
-# PC increased to 0x00000004 at time                 4000
-# Reg File write at, 13
-# Curr instr out: 0x40810633
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# SUB - alu_CU
-# SUB worked
-# PC increased to 0x00000008 at time                10000
-# Reg File write at, 12
-# Curr instr out: 0x002405b3
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# ADD - alu_CU
-# x 8 read1 - Reg File 
-# x 2 read2 - Reg File 
-# ADD worked, result:         19
-# PC increased to 0x0000000c at time                30000
-# Reg File write at, 11
-# Curr instr out: 0x00082a03
-# x 8 read1 - Reg File 
-# x 2 read2 - Reg File 
-# x16 read1 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Mem read at address:          4, value at this location:          1
-# ADD worked, result:         12
-# Mem read at address:          0, value at this location:          3
-# Mem read at address:          3, value at this location:         13
-# PC increased to 0x00000010 at time                50000
-# Reg File write at, 20
-# Curr instr out: 0x002a05b3
-# x16 read1 - Reg File 
-# ADD worked, result:         14
-# x20 read1 - Reg File 
-# x 2 read2 - Reg File 
-# Calculated offset for Load - alu_CU
-# R type - from CU
-# ADD - alu_CU
-# ADD worked, result:         27
-# PC increased to 0x00000014 at time                70000
-# Reg File write at, 11
-# Curr instr out: 0x00182a83
-# x20 read1 - Reg File 
-# x 2 read2 - Reg File 
-# x16 read1 - Reg File 
-# x 1 read2 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Mem read at address:          6, value at this location:         11
-# ADD worked, result:         13
-# Mem read at address:          0, value at this location:          3
-# Mem read at address:          3, value at this location:         13
-# PC increased to 0x00000018 at time                90000
-# Reg File write at, 21
-# Curr instr out: 0x015a05b3
-# x16 read1 - Reg File 
-# x 1 read2 - Reg File 
-# ADD worked, result:         33
-# x20 read1 - Reg File 
-# x21 read2 - Reg File 
-# Calculated offset for Load - alu_CU
-# R type - from CU
-# ADD - alu_CU
-# ADD worked, result:         25
-# PC increased to 0x0000001c at time               110000
-# Reg File write at, 11
-# Curr instr out: 0xxxxxxxxx
-# x20 read1 - Reg File 
-# x21 read2 - Reg File 
-# x x read1 - Reg File 
-# x x read2 - Reg File 
-# Unkown case - alu_CU
-# Unknown Opcode - Control Unit
-# ADD worked, result:          x
-# PC increased to 0x00000020 at time               130000
-# Unknown - Reg file
-# Error: Instruction memory address 0x00000020 out of bounds at time               130000
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unkown case - alu_CU
-# PC increased to 0x00000024 at time               150000
-# Reg File write at, 29
-# Error: Instruction memory address 0x00000024 out of bounds at time               150000
-# PC increased to 0x00000028 at time               170000
-# Reg File write at, 29
-# Error: Instruction memory address 0x00000028 out of bounds at time               170000
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:51 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu.v 
-# -- Compiling module ALU
-# 
-# Top level modules:
-# 	ALU
-# End time: 11:54:51 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu_control_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:51 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/alu_control_unit.v 
-# -- Compiling module alu_control_unit
-# 
-# Top level modules:
-# 	alu_control_unit
-# End time: 11:54:51 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/control_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:51 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/control_unit.v 
-# -- Compiling module control_unit
-# 
-# Top level modules:
-# 	control_unit
-# End time: 11:54:51 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:51 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v 
-# -- Compiling module data_memory
-# 
-# Top level modules:
-# 	data_memory
-# End time: 11:54:51 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/instruction_memory.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:51 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/instruction_memory.v 
-# -- Compiling module instruction_memory
-# 
-# Top level modules:
-# 	instruction_memory
-# End time: 11:54:51 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/mux2_to_1.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:51 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/mux2_to_1.v 
-# -- Compiling module mux2_to_1
-# 
-# Top level modules:
-# 	mux2_to_1
-# End time: 11:54:52 on Jun 26,2025, Elapsed time: 0:00:01
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/pc_unit.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:52 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/pc_unit.v 
-# -- Compiling module pc_unit
-# 
-# Top level modules:
-# 	pc_unit
-# End time: 11:54:52 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:52 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v 
-# -- Compiling module processor
-# 
-# Top level modules:
-# 	processor
-# End time: 11:54:52 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/program_counter.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:52 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/program_counter.v 
-# -- Compiling module programCounter
-# 
-# Top level modules:
-# 	programCounter
-# End time: 11:54:52 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/register_file.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:52 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/register_file.v 
-# -- Compiling module register_file
-# 
-# Top level modules:
-# 	register_file
-# End time: 11:54:52 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/sign_extender.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:52 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/sign_extender.v 
-# -- Compiling module sign_extender
-# 
-# Top level modules:
-# 	sign_extender
-# End time: 11:54:52 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_PC.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:52 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_PC.v 
-# -- Compiling module testbench_pc_unit
-# 
-# Top level modules:
-# 	testbench_pc_unit
-# End time: 11:54:52 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vlog -sv -mfcu {C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_processor.v}
-# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 11:54:53 on Jun 26,2025
-# vlog -reportprogress 300 -sv -mfcu C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/tb_processor.v 
-# -- Compiling module processor_tb
-# 
-# Top level modules:
-# 	processor_tb
-# End time: 11:54:53 on Jun 26,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-quit -sim
-# End time: 11:54:59 on Jun 26,2025, Elapsed time: 0:04:23
-# Errors: 0, Warnings: 1
-vsim work.processor_tb
-# vsim work.processor_tb 
-# Start time: 11:55:02 on Jun 26,2025
-# Loading sv_std.std
-# Loading work.processor_tb
-# Loading work.processor
-# Loading work.pc_unit
-# Loading work.programCounter
-# Loading work.instruction_memory
-# Loading work.control_unit
-# Loading work.register_file
-# Loading work.alu_control_unit
-# Loading work.ALU
-# Loading work.data_memory
-# ** Warning: (vsim-3015) C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/processor.v(104): [PCDPC] - Port size (32) does not match connection size (1) for port 'read_data_out'. The port definition is at: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v(6).
-#    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/MEMaccess File: C:/Users/UMA MAHESH/Desktop/verilog/MIPS_processor/src/data_memory.v
-add wave -position insertpoint sim:/processor_tb/*
-run
-# Instruction Memory loaded from instructions.mem
-# Program Memory loaded from program.mem
-# PC increased to 0xxxxxxxxx at time                    0
-# Unknown - Reg file
-# Error: Instruction memory address 0xxxxxxxxx out of bounds at time                    0
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unknown Task - alu_CU
-# Unkown case - alu_CU
-# ADD worked, result:          x
-# PC reset!
-# Reg File reset!
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Curr instr out: 0x008176b3
-# x 2 read1 - Reg File 
-# x 8 read2 - Reg File 
-# AND - alu_CU
-# R type - from CU
-# AND worked
-# PC increased to 0x00000004 at time                 4000
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# 2000 | 0x         0 | 0x008176b3 | 0x         4 | 0x0011 | 0x1 
 # Reg File wrote 4 at, 13
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
 # Curr instr out: 0x40810633
 # x 2 read1 - Reg File 
 # x 8 read2 - Reg File 
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
 # SUB - alu_CU
 # SUB worked
-# PC increased to 0x00000008 at time                10000
+# 4000 | 0x         4 | 0x40810633 | 0x        11 | 0x0010 | 0x1 
+# -------------------CLK Change-----------------
 # Reg File wrote 11 at, 12
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
 # Curr instr out: 0x002405b3
 # x 2 read1 - Reg File 
 # x 8 read2 - Reg File 
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
 # ADD - alu_CU
 # x 8 read1 - Reg File 
 # x 2 read2 - Reg File 
 # ADD worked, result:         19
-# PC increased to 0x0000000c at time                30000
+# 10000 | 0x         8 | 0x002405b3 | 0x        19 | 0x0001 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
 # Reg File wrote 19 at, 11
-# Curr instr out: 0x00082a03
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# Curr instr out: 0x00bb0663
 # x 8 read1 - Reg File 
 # x 2 read2 - Reg File 
-# x16 read1 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Mem read at address:          4, value at this location:          1
-# ADD worked, result:         12
-# Mem read at address:          0, value at this location:          3
-# Mem read at address:          3, value at this location:         13
-# PC increased to 0x00000010 at time                50000
-# Reg File wrote 12 at, 20
-# Curr instr out: 0x002a05b3
-# x16 read1 - Reg File 
-# ADD worked, result:         14
-# x20 read1 - Reg File 
-# x 2 read2 - Reg File 
-# Calculated offset for Load - alu_CU
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# x22 read1 - Reg File 
+# x11 read2 - Reg File 
+# B type - from CU
+# Branch - alu_CU
+# ADD worked, result:         38
+# Equal worked:          1
+# 30000 | 0x        12 | 0x00bb0663 | 0x         1 | 0x1000 | 0x0 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# Curr instr out: 0x008176b3
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# x 2 read1 - Reg File 
+# x 8 read2 - Reg File 
+# Branch - alu_CU
 # R type - from CU
+# AND - alu_CU
+# Equal worked:          0
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000000000---------
+# AND worked
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# 50000 | 0x         0 | 0x008176b3 | 0x         4 | 0x0011 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 4 at, 13
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# Curr instr out: 0x40810633
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# SUB - alu_CU
+# SUB worked
+# 70000 | 0x         4 | 0x40810633 | 0x        11 | 0x0010 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 11 at, 12
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# Curr instr out: 0x002405b3
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
 # ADD - alu_CU
-# ADD worked, result:         27
-# PC increased to 0x00000014 at time                70000
-# Reg File wrote 27 at, 11
-# Curr instr out: 0x00182a83
-# x20 read1 - Reg File 
+# x 8 read1 - Reg File 
 # x 2 read2 - Reg File 
-# x16 read1 - Reg File 
-# x 1 read2 - Reg File 
-# SLT - alu_CU
-# L type - from CU
-# Calculated offset for Load - alu_CU
-# comparision worked
-# Mem read at address:          6, value at this location:         11
-# ADD worked, result:         13
-# Mem read at address:          0, value at this location:          3
-# Mem read at address:          3, value at this location:         13
-# PC increased to 0x00000018 at time                90000
-# Reg File wrote 13 at, 21
-# Curr instr out: 0x015a05b3
-# x16 read1 - Reg File 
-# x 1 read2 - Reg File 
-# ADD worked, result:         33
-# x20 read1 - Reg File 
-# x21 read2 - Reg File 
-# Calculated offset for Load - alu_CU
+# ADD worked, result:         19
+# 90000 | 0x         8 | 0x002405b3 | 0x        19 | 0x0001 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 19 at, 11
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# Curr instr out: 0x00bb0663
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# x22 read1 - Reg File 
+# x11 read2 - Reg File 
+# B type - from CU
+# Branch - alu_CU
+# ADD worked, result:         38
+# Equal worked:          1
+# 110000 | 0x        12 | 0x00bb0663 | 0x         1 | 0x1000 | 0x0 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# Curr instr out: 0x008176b3
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# x 2 read1 - Reg File 
+# x 8 read2 - Reg File 
+# Branch - alu_CU
 # R type - from CU
+# AND - alu_CU
+# Equal worked:          0
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000000000---------
+# AND worked
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# 130000 | 0x         0 | 0x008176b3 | 0x         4 | 0x0011 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 4 at, 13
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# Curr instr out: 0x40810633
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# SUB - alu_CU
+# SUB worked
+# 150000 | 0x         4 | 0x40810633 | 0x        11 | 0x0010 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 11 at, 12
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# Curr instr out: 0x002405b3
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
 # ADD - alu_CU
-# ADD worked, result:         25
-# PC increased to 0x0000001c at time               110000
-# Reg File wrote 25 at, 11
-# Curr instr out: 0xxxxxxxxx
-# x20 read1 - Reg File 
-# x21 read2 - Reg File 
-# x x read1 - Reg File 
-# x x read2 - Reg File 
-# Unkown case - alu_CU
-# Unknown Opcode - Control Unit
-# ADD worked, result:          x
-# PC increased to 0x00000020 at time               130000
-# Unknown - Reg file
-# Error: Instruction memory address 0x00000020 out of bounds at time               130000
-# x27 read1 - Reg File 
-# x10 read2 - Reg File 
-# Unkown case - alu_CU
-# PC increased to 0x00000024 at time               150000
-# Reg File wrote x at, 29
-# Error: Instruction memory address 0x00000024 out of bounds at time               150000
-# PC increased to 0x00000028 at time               170000
-# Reg File wrote x at, 29
-# Error: Instruction memory address 0x00000028 out of bounds at time               170000
-# PC increased to 0x0000002c at time               190000
-# Reg File wrote x at, 29
-# Error: Instruction memory address 0x0000002c out of bounds at time               190000
-# End time: 12:01:42 on Jun 26,2025, Elapsed time: 0:06:40
-# Errors: 0, Warnings: 1
+# x 8 read1 - Reg File 
+# x 2 read2 - Reg File 
+# ADD worked, result:         19
+# 170000 | 0x         8 | 0x002405b3 | 0x        19 | 0x0001 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 19 at, 11
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# Curr instr out: 0x00bb0663
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# x22 read1 - Reg File 
+# x11 read2 - Reg File 
+# B type - from CU
+# Branch - alu_CU
+# ADD worked, result:         38
+# Equal worked:          1
+# 190000 | 0x        12 | 0x00bb0663 | 0x         1 | 0x1000 | 0x0 
+# -------------------CLK Change-----------------
+# ** Note: $finish    : tb_processor.v(35)
+#    Time: 204 ns  Iteration: 0  Instance: /processor_tb
+# 1
+# Break in Module processor_tb at tb_processor.v line 35
+# Stopping transcript logging.

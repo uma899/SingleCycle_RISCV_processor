@@ -7,11 +7,13 @@ OR (Bitwise OR)
 XOR (Bitwise XOR)
 SLL (Logical Shift Left)
 SRL (Logical Shift Right)
+
+Equal
 */
 
 module ALU ( // Changed moduleName to ALU
     input [31:0] operand1_in, operand2_in,
-    input [2:0] alu_control_in,
+    input [3:0] alu_control_in,
     output [31:0] alu_result,
     output zero
 );
@@ -19,32 +21,32 @@ module ALU ( // Changed moduleName to ALU
 
     always @(*) begin // Combinational logic, sensitive to all inputs
         case (alu_control_in)
-            3'b000: begin // SLT
+            4'b0000: begin // SLT
                 alu_result_int = (operand1_in < operand2_in) ? 32'd1 : 32'd0;
 
                 $display("comparision worked");
             end
-            3'b001: begin // ADD
+            4'b0001: begin // ADD
                 alu_result_int = operand1_in + operand2_in;
                 $display("ADD worked, result: %d", alu_result_int);
             end
-            3'b010: begin // SUB
+            4'b0010: begin // SUB
                 alu_result_int = operand1_in - operand2_in;
                 $display("SUB worked");
             end
-            3'b011: begin // AND
+            4'b0011: begin // AND
                 alu_result_int = operand1_in & operand2_in;
                 $display("AND worked");
             end
-            3'b100: begin // OR
+            4'b0100: begin // OR
                 alu_result_int = operand1_in | operand2_in;
                 $display("OR worked");
             end
-            3'b101: begin // XOR
+            4'b0101: begin // XOR
                 alu_result_int = operand1_in ^ operand2_in;
                 $display("XOR worked");
             end
-            3'b110: begin // SLL (Shift Left Logical)
+            4'b0110: begin // SLL (Shift Left Logical)
                 // For shifts in MIPS, the shift amount comes from operand2_in[4:0] (shamt)
                 // or the rt register for variable shifts.
                 // Assuming operand2_in provides the shift amount (shamt).
@@ -55,12 +57,20 @@ module ALU ( // Changed moduleName to ALU
 
                 $display("Shift worked");
             end
-            3'b111: begin // SRL (Shift Right Logical)
+            4'b0111: begin // SRL (Shift Right Logical)
                 // Assuming operand2_in's lower 5 bits are the shift amount.
                 alu_result_int = operand1_in >> operand2_in[4:0];
 
                 $display("Shift worked");
             end
+
+
+            4'b1000: begin // EQUAL
+                alu_result_int = (operand1_in == operand2_in) ? 32'd1 : 32'd0;
+                $display("Equal worked: %d", alu_result_int);
+            end
+
+
             default: begin
                 // Default case for unknown ALU control values.
                 // Important for synthesis to avoid latches.
