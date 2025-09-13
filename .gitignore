@@ -1,0 +1,9 @@
+/assembler/
+/helpers/
+/work/
+*.txt
+*.vcd
+processorOLD.v
+*.tcl
+tb_PC.v
+*.wlf
