@@ -8,3 +8,4 @@ processorOLD.v
 tb_PC.v
 *.wlf
 -off
+*.bat
