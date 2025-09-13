@@ -7,3 +7,4 @@ processorOLD.v
 *.tcl
 tb_PC.v
 *.wlf
+-off
