@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Cleaning up existing 'work' library...
 # Creating and mapping 'work' library...
 # Compiling Verilog design files and testbench...
@@ -155,3 +156,253 @@
 # 1
 # Break in Module processor_tb at tb_processor.v line 35
 # Stopping transcript logging.
+=======
+# Cleaning up existing 'work' library...
+# Creating and mapping 'work' library...
+# Compiling Verilog design files and testbench...
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 17:37:24 on Jul 15,2025
+# vlog -reportprogress 300 -sv -mfcu alu_control_unit.v alu.v control_unit.v data_memory.v instruction_memory.v mux2_to_1.v pc_unit.v processor.v program_counter.v register_file.v sign_extender.v tb_PC.v tb_processor.v 
+# -- Compiling module alu_control_unit
+# -- Compiling module ALU
+# -- Compiling module control_unit
+# -- Compiling module data_memory
+# -- Compiling module instruction_memory
+# -- Compiling module mux2_to_1
+# -- Compiling module pc_unit
+# -- Compiling module processor
+# -- Compiling module programCounter
+# -- Compiling module register_file
+# -- Compiling module sign_extender
+# -- Compiling module testbench_pc_unit
+# -- Compiling module processor_tb
+# 
+# Top level modules:
+# 	mux2_to_1
+# 	sign_extender
+# 	testbench_pc_unit
+# 	processor_tb
+# End time: 17:37:24 on Jul 15,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Compilation initiated. Check the transcript window for any errors (and now in simulation_transcript.log).
+# Starting simulation of work.processor_tb...
+# End time: 17:37:26 on Jul 15,2025, Elapsed time: 0:02:33
+# Errors: 0, Warnings: 2
+# vsim work.processor_tb 
+# Start time: 17:37:26 on Jul 15,2025
+# Loading sv_std.std
+# Loading work.processor_tb
+# Loading work.processor
+# Loading work.pc_unit
+# Loading work.programCounter
+# Loading work.instruction_memory
+# Loading work.control_unit
+# Loading work.register_file
+# Loading work.alu_control_unit
+# Loading work.ALU
+# Loading work.data_memory
+# ** Warning: (vsim-3015) processor.v(114): [PCDPC] - Port size (32) does not match connection size (1) for port 'read_data_out'. The port definition is at: data_memory.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/MEMaccess File: data_memory.v
+# Adding signals to Wave window...
+# Running simulation...
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 9 of file "instructions.mem". (Current address [8], address range [0:7])    : instruction_memory.v(10)
+#    Time: 0 ps  Iteration: 0  Instance: /processor_tb/dut/instr
+# Instruction Memory loaded from instructions.mem
+# Program Memory loaded from program.mem
+# ----------------------------------------
+# Starting RISC-V Single-Cycle Processor Testbench
+# Time  | PC        | Curr.Instruction | Next.Instruction| Regs[x2]| ALU_Out   | Mem_Out
+# ------+-----------+-------------+---------+---------+-----------+---------
+# --------Current PC:          x
+# --------branch_target_address: x, branch_offset_shifted: 000000000000000000xxxxxxxxxxxx00---------
+# Error: Instruction memory address 0xxxxxxxxx out of bounds at time                    0
+# --------Current PC:          x
+# --------branch_target_address: x, branch_offset_shifted: 000000000000000000xxx0xxxxxxx000---------
+# x27 read1 - Reg File 
+# x10 read2 - Reg File 
+# Unknown Task - alu_CU
+# Unkown case - alu_CU
+# ADD worked, result:          x
+# 0 | 0x         x | 0xdeadbeef | 0x         x | 0x0001 | 0x1 
+# PC reset!
+# Reg File reset!
+# x27 read1 - Reg File 
+# x10 read2 - Reg File 
+# --------Current PC:          0
+# --------branch_target_address: x, branch_offset_shifted: 000000000000000000xxx0xxxxxxx000---------
+# Curr instr out: 0x008176b3
+# --------Current PC:          0
+# --------branch_target_address: x, branch_offset_shifted: 000000000000000000xx0000000xx000---------
+# x 2 read1 - Reg File 
+# x 8 read2 - Reg File 
+# AND - alu_CU
+# R type - from CU
+# AND worked
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# 2000 | 0x         0 | 0x008176b3 | 0x         4 | 0x0011 | 0x1 
+# Reg File wrote 4 at, 13
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# Curr instr out: 0x40810633
+# x 2 read1 - Reg File 
+# x 8 read2 - Reg File 
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# SUB - alu_CU
+# SUB worked
+# 4000 | 0x         4 | 0x40810633 | 0x        11 | 0x0010 | 0x1 
+# -------------------CLK Change-----------------
+# Reg File wrote 11 at, 12
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# Curr instr out: 0x002405b3
+# x 2 read1 - Reg File 
+# x 8 read2 - Reg File 
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# ADD - alu_CU
+# x 8 read1 - Reg File 
+# x 2 read2 - Reg File 
+# ADD worked, result:         19
+# 10000 | 0x         8 | 0x002405b3 | 0x        19 | 0x0001 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 19 at, 11
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# Curr instr out: 0x00bb0663
+# x 8 read1 - Reg File 
+# x 2 read2 - Reg File 
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# x22 read1 - Reg File 
+# x11 read2 - Reg File 
+# B type - from CU
+# Branch - alu_CU
+# ADD worked, result:         38
+# Equal worked:          1
+# 30000 | 0x        12 | 0x00bb0663 | 0x         1 | 0x1000 | 0x0 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# Curr instr out: 0x008176b3
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# x 2 read1 - Reg File 
+# x 8 read2 - Reg File 
+# Branch - alu_CU
+# R type - from CU
+# AND - alu_CU
+# Equal worked:          0
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000000000---------
+# AND worked
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# 50000 | 0x         0 | 0x008176b3 | 0x         4 | 0x0011 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 4 at, 13
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# Curr instr out: 0x40810633
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# SUB - alu_CU
+# SUB worked
+# 70000 | 0x         4 | 0x40810633 | 0x        11 | 0x0010 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 11 at, 12
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# Curr instr out: 0x002405b3
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# ADD - alu_CU
+# x 8 read1 - Reg File 
+# x 2 read2 - Reg File 
+# ADD worked, result:         19
+# 90000 | 0x         8 | 0x002405b3 | 0x        19 | 0x0001 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 19 at, 11
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# Curr instr out: 0x00bb0663
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# x22 read1 - Reg File 
+# x11 read2 - Reg File 
+# B type - from CU
+# Branch - alu_CU
+# ADD worked, result:         38
+# Equal worked:          1
+# 110000 | 0x        12 | 0x00bb0663 | 0x         1 | 0x1000 | 0x0 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# Curr instr out: 0x008176b3
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# x 2 read1 - Reg File 
+# x 8 read2 - Reg File 
+# Branch - alu_CU
+# R type - from CU
+# AND - alu_CU
+# Equal worked:          0
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000000000---------
+# AND worked
+# --------Current PC:          0
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# 130000 | 0x         0 | 0x008176b3 | 0x         4 | 0x0011 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 4 at, 13
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000011000000011000---------
+# Curr instr out: 0x40810633
+# --------Current PC:          4
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# SUB - alu_CU
+# SUB worked
+# 150000 | 0x         4 | 0x40810633 | 0x        11 | 0x0010 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 11 at, 12
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000100000011000---------
+# Curr instr out: 0x002405b3
+# --------Current PC:          8
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# ADD - alu_CU
+# x 8 read1 - Reg File 
+# x 2 read2 - Reg File 
+# ADD worked, result:         19
+# 170000 | 0x         8 | 0x002405b3 | 0x        19 | 0x0001 | 0x1 
+# -------------------CLK Change-----------------
+# -------------------CLK Change-----------------
+# Reg File wrote 19 at, 11
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000001000000010100---------
+# Curr instr out: 0x00bb0663
+# --------Current PC:         12
+# --------branch_target_address: 0, branch_offset_shifted: 00000000000000000000000000011000---------
+# x22 read1 - Reg File 
+# x11 read2 - Reg File 
+# B type - from CU
+# Branch - alu_CU
+# ADD worked, result:         38
+# Equal worked:          1
+# 190000 | 0x        12 | 0x00bb0663 | 0x         1 | 0x1000 | 0x0 
+# -------------------CLK Change-----------------
+# ** Note: $finish    : tb_processor.v(35)
+#    Time: 204 ns  Iteration: 0  Instance: /processor_tb
+# 1
+# Break in Module processor_tb at tb_processor.v line 35
+# Stopping transcript logging.
+>>>>>>> 628c9153ad1970f300b5de88177c32d846f1347a

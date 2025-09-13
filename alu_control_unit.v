@@ -1,194 +1,132 @@
-/* module alu_control_unit (
-    input [1:0] alu_op,   // High-level ALU operation from main Control Unit
-    input [2:0] funct3,   // funct3 field from instruction (bits 14:12)
-    input [6:0] funct7,   // funct7 field from instruction (bits 31:25)
-    output reg [2:0] alu_select // Final 3-bit control for the ALU module
+module control_unit (
+    input  [6:0] opcode,
+
+    output reg reg_dst,        // 1 for R-type (rd), 0 for I-type (rt)
+    output reg jump,
+    output reg branch,
+    output reg mem_read_en,
+    output reg mem_to_reg,     // 1 for Load, 0 for ALU result
+    output reg [1:0] alu_op,   // Using 2 bits for higher-level ALU operation type
+                                // (e.g., 00: R-type, 01: load/store, 10: branch, etc.)
+    output reg mem_write_en,
+    output reg alu_src,        // 1 for immediate, 0 for register read data2
+    output reg reg_write_en
 );
 
-localparam ALU_SLT   = 3'b000;
-localparam ALU_ADD   = 3'b001;
-localparam ALU_SUB   = 3'b010;
-localparam ALU_AND   = 3'b011;
-localparam ALU_OR    = 3'b100;
-localparam ALU_XOR   = 3'b101;
-localparam ALU_SLL   = 3'b110;
-localparam ALU_SRL   = 3'b111;
-
-// Define the higher-level ALU operation codes from the main Control Unit
-// These must match the `define`s used in your `control_unit.v`
-// (Assuming you're using `ALU_OP_R_TYPE`, `ALU_OP_ADD_SUB` etc. from my last example)
-localparam ALU_OP_R_TYPE   = 2'b10; // Corresponds to `ALU_OP_R_TYPE`
-localparam ALU_OP_ADD_SUB  = 2'b00; // Corresponds to `ALU_OP_ADD_SUB`
-localparam ALU_OP_BRANCH   = 2'b01; // Let's introduce a specific ALU_OP for branches for clarity
-                                    // You'll need to update your main Control Unit to use this for branches
-localparam ALU_OP_PASS_B   = 2'b11; // Can be used to simply pass operand2 to result, e.g., for LUI (if ALU is involved)
-
-
+    // All outputs must have a default value to prevent latches
+    // Initialize to 0 (de-asserted) or a safe default
     always @(*) begin
-        // Default assignment for alu_select to prevent latches
-        alu_select = ALU_ADD; // A common safe default
+        // Default values for all control signals
+        reg_dst        = 1'b0;
+        jump           = 1'b0;
+        branch         = 1'b0;
+        mem_read_en    = 0'b0;
+        mem_to_reg     = 1'b0;
+        alu_op         = 2'b00; // Default ALU operation (e.g., for R-type base)
+        mem_write_en   = 0'b0;
+        alu_src        = 1'b0;
+        reg_write_en   = 1'b0;
 
-        case (alu_op)
-            ALU_OP_R_TYPE: begin // R-type instructions (ADD, SUB, SLL, SLT, AND, OR, XOR, SRL, SRA)
-                // Decode R-type operations using funct3 and funct7
-                // Use a combined value {funct7, funct3} or nested cases
-                case ({funct7, funct3})
-                    // ADD (ADD is funct7=0000000, funct3=000)
-                    {7'b0000000, 3'b000}: alu_select = ALU_ADD;
-                    // SUB (SUB is funct7=0100000, funct3=000)
-                    {7'b0100000, 3'b000}: alu_select = ALU_SUB;
-                    // SLL (SLL is funct7=0000000, funct3=001)
-                    {7'b0000000, 3'b001}: alu_select = ALU_SLL;
-                    // SLT (SLT is funct7=0000000, funct3=010)
-                    {7'b0000000, 3'b010}: alu_select = ALU_SLT; // Signed less than
-                    // SLTU (SLTU is funct7=0000000, funct3=011) - if you implement unsigned SLT
-                    // {7'b0000000, 3'b011}: alu_select = ALU_SLTU; // Needs ALU support
+        case (opcode)
+            // R-TYPE (ADD, SUB, AND, OR, XOR, SLL, SRL, SLT etc. - all have opcode 7'b011001)
+            7'b0110011: begin // R-type instructions (e.g., add, sub, and, or, xor, sll, srl, slt)
+                reg_dst        = 1'b1;     // Destination is rd (Instruction[15:11])
+                alu_src        = 1'b0;     // Second ALU operand comes from Read_Data2
+                reg_write_en   = 1'b1;     // Write result back to register file
+                alu_op         = 2'b00;    // Signal to ALU_Control that it's an R-type operation
+                                            // The ALU_Control will then use 'funct'
+                mem_read_en    = 0'b0;                                            
 
-                    // XOR (XOR is funct7=0000000, funct3=100)
-                    {7'b0000000, 3'b100}: alu_select = ALU_XOR;
-                    // SRL (SRL is funct7=0000000, funct3=101)
-                    {7'b0000000, 3'b101}: alu_select = ALU_SRL;
-                    // SRA (SRA is funct7=0100000, funct3=101) - if you implement arithmetic right shift
-                    // {7'b0100000, 3'b101}: alu_select = ALU_SRA; // Needs ALU support
-
-                    // OR (OR is funct7=0000000, funct3=110)
-                    {7'b0000000, 3'b110}: alu_select = ALU_OR;
-                    // AND (AND is funct7=0000000, funct3=111)
-                    {7'b0000000, 3'b111}: alu_select = ALU_AND;
-
-                    default: begin 
-                        alu_select = ALU_ADD; // Default for unhandled R-type funct/funct7
-
-                        $display("Default from ALU control Unit");
-                    end
-
-                endcase
+                $display("R type - from CU");
             end
 
-            ALU_OP_ADD_SUB: begin // For Load/Store address calculation, ADDI, JALR address
-                // These typically just need an ADD operation in the ALU
-                // ADDI is `funct3=000`. LW/SW/JALR address calculation also use ADD.
-                alu_select = ALU_ADD;
-                // If you had I-type instructions like XORI, ORI, ANDI, SLTI, SLTUI
-                // which use `alu_op` as `ALU_OP_ADD_SUB` but need different ALU ops based on funct3:
-                case (funct3)
-                    3'b000: alu_select = ALU_ADD;  // ADDI
-                    3'b010: alu_select = ALU_SLT;  // SLTI (Signed Less Than Immediate)
-                    // 3'b011: alu_select = ALU_SLTU; // SLTIU (Unsigned Less Than Immediate) - Needs ALU support
-                    3'b100: alu_select = ALU_XOR;  // XORI
-                    3'b110: alu_select = ALU_OR;   // ORI
-                    3'b111: alu_select = ALU_AND;  // ANDI
-                    // Other I-type ops (SLLI, SRLI, SRAI) might also be handled here,
-                    // but they share funct3 with R-type shifts and might use funct7 for distinction
-                    // or be handled with a different `alu_op` from the control unit.
-                    default: begin alu_select = ALU_ADD; // Default for other I-type funct3
-                        $display("Default from ALU control Unit");
-                    end
-                endcase
+            // I-TYPE (Arithmetic/Logical Immediate - ADDI, XORI, ORI, ANDI, SLLI, SRLI, SRAI, SLTI, SLTUI)
+            7'b0010011: begin
+                reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
+                alu_src        = 1'b1;     // Second ALU operand comes from sign-extended immediate
+                reg_write_en   = 1'b1;     // Write result back to register file
+                alu_op         = 2'b01;    // Signal for I-type ALU operation (e.g., ADD for ADDI)
+                                            // ALU_Control will use funct3 for actual operation
             end
 
-            ALU_OP_BRANCH: begin // For Branch instructions (BEQ, BNE, BLT, BGE, etc.)
-                // Branches usually perform subtraction (to set zero flag for BEQ/BNE)
-                // or comparison (for BLT/BGE)
-                case (funct3)
-                    3'b000: alu_select = ALU_SUB; // BEQ, BNE (result == 0 for BEQ, !=0 for BNE)
-                    3'b010: alu_select = ALU_SLT; // BLT (Signed Less Than)
-                    // 3'b011: alu_select = ALU_SLTU; // BLTU (Unsigned Less Than) - Needs ALU support
-                    // 3'b100: alu_select = ALU_GE; // BGE (Greater or Equal) - needs ALU support (or invert SLT)
-                    // 3'b101: alu_select = ALU_BGEU; // BGEU (Unsigned Greater or Equal) - Needs ALU support
-                    default: alu_select = ALU_SUB; // Default for other branch types
-                endcase
-            end
-            // Add other ALU_OP types from your main Control Unit if they need specific ALU operations
-            // For example, if you have a special ALU_OP for LUI or AUIPC if the ALU is used to pass the immediate.
-            // ALU_OP_PASS_B: begin
-            //     alu_select = ALU_PASS_B; // Assuming your ALU has a pass-through operation
-            // end
+            // LOAD TYPE (LW, LH, LB, LHU, LBU - all have opcode 7'b000001)
+            7'b0000011: begin
+                reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
+                alu_src        = 1'b1;     // ALU calculates address: base_reg + sign_extended_immediate
+                mem_read_en    = 1'b1;     // Enable Data Memory read
+                mem_to_reg     = 1'b1;     // Write data from memory to register
+                reg_write_en   = 1'b1;     // Enable Register File write
+                alu_op         = 2'b01;    // ALU performs ADD for address calculation
 
-            default: alu_select = ALU_ADD; // Default for unhandled high-level alu_op
+                $display("L type - from CU");
+            end
+
+            // S-TYPE (Store Instructions - SW, SH, SB - all have opcode 7'b010001)
+            7'b0100011: begin
+                alu_src        = 1'b1;     // ALU calculates address: base_reg + sign_extended_immediate
+                mem_write_en   = 1'b1;     // Enable Data Memory write
+                reg_write_en   = 1'b0;     // No register write for store instructions
+                alu_op         = 2'b01;    // ALU performs ADD for address calculation
+
+                $display("S type - from CU");
+            end
+
+            // B-TYPE (Branch Instructions - BEQ, BNE, BLT, BGE etc. - all have opcode 7'b110001)
+            7'b1100011: begin
+                branch         = 1'b1;     // Enable branch logic (conditional on Zero flag)
+               // alu_src        = 1'b0;     // ALU performs subtraction (Rs1 - Rs2) to set Zero flag for BEQ/BNE
+                reg_write_en   = 1'b0;     // No register write for branch instructions
+                alu_op         = 2'b10;    // Signal for Branch ALU operation (e.g., SUB for equality check)
+
+                $display("B type - from CU");
+            end
+
+            // J-TYPE (JAL - Jump And Link - opcode 7'b110111)
+            7'b1101111: begin
+                jump           = 1'b1;     // Enable jump logic
+                reg_dst        = 1'b1;     // Write PC+4 to rd (R31 for MIPS, or specific rd for RISC-V JAL)
+                reg_write_en   = 1'b1;     // Write PC+4 to link register (e.g., x1 for RISC-V)
+                alu_op         = 2'b00;    // No ALU operation needed, but set a default
+                                            // Or use a specific code if ALU needs to pass PC+4
+                $display("J type - from CU");
+            end
+
+            // JALR (Jump And Link Register - opcode 7'b110011 -- similar to I-type ALU)
+            // If you implement JALR, its opcode is the same as I-type LOAD (0000011) but with funct3.
+            // In RISC-V, JALR uses opcode 7'b110011.
+            // If you have JALR, its RegWrite is 1, RegDst is 0 (rt), ALUSrc is 1 (immediate),
+            // and ALUOp will be ADD (for address calculation, or just pass PC+4 for RegFile).
+            // Example if you choose to support JALR:
+            /*
+            7'b110011: begin // JALR
+                jump           = 1'b1;     // Enable jump logic
+                reg_dst        = 1'b0;     // Write PC+4 to rt
+                alu_src        = 1'b1;     // ALU for address calculation: base + imm
+                reg_write_en   = 1'b1;     // Write PC+4 to link register
+                alu_op         = 2'b01;    // ALU operation for address (e.g., ADD for base + offset)
+            end
+            */
+
+            default: begin
+                // All signals remain at their default (de-asserted) values.
+                // This is crucial to prevent inference of latches.
+                // For unknown/unsupported opcodes, no operation should occur.
+                $display("Unknown Opcode - Control Unit");
+            end
         endcase
     end
 
-endmodule */
+    // ALU_Control logic (can be a separate module or integrated here)
+    // This part determines the specific ALU operation based on alu_op from above
+    // and funct field for R-type, or funct3 for I/S/B types.
+    // For simplicity, let's keep it here for now, defining your ALU's 3-bit control.
+    // NOTE: This now drives alu_op in a separate always block (which is allowed if alu_op is a wire)
+    // BUT since alu_op is a 'reg' AND driven in the main block, this creates a conflict.
+    // The solution is to have ALU_Control be a separate module, or merge this logic.
 
-
-module alu_control_unit (
-    input [1:0] alu_op,   // High-level ALU operation from main Control Unit
-    input [2:0] funct3,   // funct3 field from instruction (bits 14:12)
-    input [6:0] funct7,   // funct7 field from instruction (bits 31:25)
-    output reg [3:0] alu_select // Final 3-bit control for the ALU module
-);
-
-localparam ALU_SLT   = 4'b0000;
-localparam ALU_ADD   = 4'b0001;
-localparam ALU_SUB   = 4'b0010;
-localparam ALU_AND   = 4'b0011;
-localparam ALU_OR    = 4'b0100;
-localparam ALU_XOR   = 4'b0101;
-localparam ALU_SLL   = 4'b0110;
-localparam ALU_SRL   = 4'b0111;
-
-localparam ALU_EQ    = 4'b1000;
-
-    always @(*) begin
-        if(alu_op == 2'b00) begin
-            case({funct3, funct7})
-
-                {3'b010, 7'b0000000}: begin
-                    alu_select = ALU_SLT;
-                    $display("SLT - alu_CU");
-                end
-
-                {3'b000, 7'b0000000}: begin
-                    alu_select = ALU_ADD;
-                    $display("ADD - alu_CU");
-                end
-
-                {3'b000, 7'b0100000}: begin
-                    alu_select = ALU_SUB;
-                    $display("SUB - alu_CU");
-                end
-
-                {3'b111, 7'b0000000}: begin
-                    alu_select = ALU_AND;
-                    $display("AND - alu_CU");
-                end
-
-                {3'b110, 7'b0000000}: begin
-                    alu_select = ALU_OR;
-                    $display("OR - alu_CU");
-                end
-
-                {3'b100, 7'b0000000}: begin
-                    alu_select = ALU_XOR;
-                    $display("XOR - alu_CU");
-                end
-
-                {3'b001, 7'b0000000}: begin
-                    alu_select = ALU_SLL;
-                    $display("SLL - alu_CU");
-                end
-
-                {3'b101, 7'b0000000}: begin
-                    alu_select = ALU_SRL;
-                    $display("SRL - alu_CU");
-                end
-
-                default: begin
-                    alu_select = ALU_ADD;
-                    $display("Unkown case - alu_CU");
-                end
-
-            endcase
-        end else if(alu_op == 2'b01) begin
-            alu_select = ALU_ADD;
-            $display("Calculated offset for Load - alu_CU");
-        end else if(alu_op == 2'b10) begin
-            alu_select = ALU_EQ;
-            $display("Branch - alu_CU");
-        end else begin
-            $display("Unknown Task - alu_CU");
-        end
-    end
+    // Let's assume you will have a separate ALU_Control module,
+    // and this module's 'alu_op' output is a higher-level code.
+    // So, I'll remove the second always block from this module.
+    // Your ALU's 'alu_control_in' will be derived from THIS 'alu_op' and 'funct' elsewhere.
 
 endmodule
