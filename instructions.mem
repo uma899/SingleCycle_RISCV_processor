@@ -1,7 +1,12 @@
 00c58533  // add x10, x11, x12
 40c58533  // sub x10, x11, x12
+0081a283  // lw x5, 8(x3)
+00a22423  // sw x10, 8(x4)
 0080016f  // jal  x2, 4  - writes below instr to x2 and change pc to pc + offset + 4 (if offset=0, jumps to next instr)
 00a58d33  // add x13, x11, x10
 00c58533  // add x10, x11, x12
-00c60633  // add x12, x12, x12
+00A50863  // beq x10, x10, EqualLabel. Here, EqualLabel = 8 (jumps to below 3rd instr)
+00c60633  // add x10, x12, x12
+40c58533  // sub x10, x11, x12
 00c67633  // add x14, x12, x12
+84A50063

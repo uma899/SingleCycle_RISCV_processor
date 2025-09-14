@@ -29,7 +29,8 @@ module register_file (
             // Due to no reason, it is not needed. But don't know why it isthere as input
 			temp_reg[0] = 32'b0; // Explicitly set $zero register
 
-            //temp_reg[2] = 32'b16;
+            temp_reg[3] = 32'd4;
+            temp_reg[4] = 32'd12;
 
             temp_reg[11] = 32'd24;
             temp_reg[12] = 32'd8;
@@ -65,7 +66,7 @@ module register_file (
         end else begin
             read_data1 = temp_reg[read_reg1_addr];
 
-            $display("x%d read1 - Reg File ", read_reg1_addr);
+            //$display("x%d read1 - Reg File ", read_reg1_addr);
         end
 
         if (read_reg2_addr == 5'b0) begin
@@ -73,7 +74,7 @@ module register_file (
         end else begin
             read_data2 = temp_reg[read_reg2_addr];
 
-            $display("x%d read2 - Reg File ", read_reg2_addr);
+            //$display("x%d read2 - Reg File ", read_reg2_addr);
         end
     end
 

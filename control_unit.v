@@ -7,7 +7,7 @@ module control_unit (
     output reg mem_read_en,
     output reg mem_to_reg,     // 1 for Load, 0 for ALU result
     output reg [1:0] alu_op,   // Using 2 bits for higher-level ALU operation type
-                                // (e.g., 00: R-type, 01: load/store, 10: branch, etc.)
+    // 00: R-type, 01: load, 01: store, 10: branch
     output reg mem_write_en,
     output reg alu_src,        // 1 for immediate, 0 for register read data2
     output reg reg_write_en
@@ -20,10 +20,10 @@ module control_unit (
         reg_dst        = 1'b0;
         jump           = 1'b0;
         branch         = 1'b0;
-        mem_read_en    = 0'b0;
+        mem_read_en    = 1'b0;
         mem_to_reg     = 1'b0;
         alu_op         = 2'b00; // Default ALU operation (e.g., for R-type base)
-        mem_write_en   = 0'b0;
+        mem_write_en   = 1'b0;
         alu_src        = 1'b0;
         reg_write_en   = 1'b0;
 
@@ -40,15 +40,17 @@ module control_unit (
                 $display("R type - from CU");
             end
 
-            // I-TYPE (Arithmetic/Logical Immediate - ADDI, XORI, ORI, ANDI, SLLI, SRLI, SRAI, SLTI, SLTUI)
+            // I-TYPE 
+            //(Arithmetic/Logical Immediate - ADDI, XORI, ORI, ANDI, SLLI, SRLI, SRAI, SLTI, SLTUI)
             7'b0010011: begin
                 reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
                 alu_src        = 1'b1;     // Second ALU operand comes from sign-extended immediate
                 reg_write_en   = 1'b1;     // Write result back to register file
                 alu_op         = 2'b01;    // Signal for I-type ALU operation (e.g., ADD for ADDI)
-                                            // ALU_Control will use funct3 for actual operation
+                                           // ALU_Control will use funct3 for actual operation
             end
 
+            // I-TYPE
             // LOAD TYPE (LW, LH, LB, LHU, LBU - all have opcode 7'b000001)
             7'b0000011: begin
                 reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
@@ -73,6 +75,7 @@ module control_unit (
 
             // B-TYPE (Branch Instructions - BEQ, BNE, BLT, BGE etc. - all have opcode 7'b110001)
             7'b1100011: begin
+                reg_dst        = 1'b1;
                 branch         = 1'b1;     // Enable branch logic (conditional on Zero flag)
                // alu_src        = 1'b0;     // ALU performs subtraction (Rs1 - Rs2) to set Zero flag for BEQ/BNE
                 reg_write_en   = 1'b0;     // No register write for branch instructions

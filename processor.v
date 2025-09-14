@@ -4,43 +4,26 @@ module processor (
 
     wire [31:0] current_PC; 
     wire [31:0] current_instr;
-    //wire [31:0] next_instr;
-
-
 
     wire [31:0] alu_out;   
 
-    /* These have no work for now.. */
     wire branch, jump;
-    wire zero_flag;
-    
-    wire [25:0] jump_target_imm_20;
-    /* These have no work for now.. */
+    wire [19:0] jump_target_imm_20;
+    wire [11:0] branch_offset_12;
 
-    wire [31:0] branch_offset_shifted;
-
-    
-    assign branch_offset_shifted = (alu_out == 32'b0) ? {32'd0} : {18'b0, current_instr[12],current_instr[7], current_instr[30:25], current_instr[11:8], 2'b00};
-
-/*
-imm[20] (the sign bit): 0
-
-imm[19:12] (8 bits): 00000010
-
-imm[11] (1 bit): 1
-
-imm[10:1] (10 bits): 0100000000
-
-*/
+    wire zero;  // 1 if zero = 0
 
     assign jump_target_imm_20 = {current_instr[31], current_instr[19:12], current_instr[20], current_instr[30:21]};
+    assign branch_offset_12 = {current_instr[31], current_instr[7], current_instr[30:25], current_instr[11:8]};
+    //assign branch_offset_12 = 12'd4;
 
+// refer pg. 185 in pdf
     pc_unit PCmain(
-        clk, reset, 
-        branch, jump, zero_flag, 
-        branch_offset_shifted, 
-        jump_target_imm_20,
-        current_PC
+        .clk(clk), .reset(reset), 
+        .branch(branch), .jump(jump), .zero_flag(zero), 
+        .branch_offset_12(branch_offset_12), 
+        .jump_target_imm_20(jump_target_imm_20),
+        .current_pc_out(current_PC)
     );
 
     instruction_memory instr (
@@ -77,11 +60,14 @@ imm[10:1] (10 bits): 0100000000
     wire [31:0] read_data1_from_rf;
     wire [31:0] read_data2_from_rf;
 
-    wire [4:0] rs2_vs_immediate;
 
+    wire [31:0] read_data_out;
 
     wire [31:0] write_data;
-    assign write_data = (jump) ? current_PC + 32'd4 : alu_out;
+    wire [31:0] temp_write_data;
+    assign temp_write_data = (jump) ? current_PC + 32'd4 : (mem_to_reg) ? read_data_out : 32'd0;
+    //wire check_jump_memtoreg = jump + mem_to_reg;
+    assign write_data = (jump | mem_to_reg) ? temp_write_data : alu_out;
 
     register_file regFile (
         clk, reset,
@@ -98,11 +84,15 @@ imm[10:1] (10 bits): 0100000000
 
 
     wire [31:0] operand2;
-    assign operand2 = (alu_src) ? {20'd0, current_instr[31:20]} : read_data2_from_rf;
+
+    wire [31:0] immediate_value;
+    assign immediate_value = (mem_to_reg) ? {{20{current_instr[31]}}, current_instr[31:20]}:
+                                            {{20{current_instr[31]}}, current_instr[31:25], current_instr[11:7]};
+    assign operand2 = (alu_src) ? immediate_value : read_data2_from_rf;
 
 
     wire [3:0]alu_select;
-    wire zero;
+    
 
     alu_control_unit ALU_CU(
         alu_op,   
@@ -119,13 +109,12 @@ imm[10:1] (10 bits): 0100000000
         zero
     );    
 
-
-
-
+//    wire [31:0] mem_write_data_in;
+//    assign mem_write_data_in = (mem_to_reg) ? alu_out : read_data2_from_rf;
     data_memory MEMaccess(
         clk, reset,
         alu_out,            // Calculated offSet address
-        read_data2_from_rf,                   
+        read_data2_from_rf,
         mem_read_en, mem_write_en,
         read_data_out
     );

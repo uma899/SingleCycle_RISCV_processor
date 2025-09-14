@@ -28,7 +28,7 @@ module ALU ( // Changed moduleName to ALU
             end
             4'b0001: begin // ADD
                 alu_result_int = operand1_in + operand2_in;
-                //$display("ADD worked, result: %d", alu_result_int);
+                $display("ADD worked, result: %d", alu_result_int);
             end
             4'b0010: begin // SUB
                 alu_result_int = operand1_in - operand2_in;
@@ -66,8 +66,8 @@ module ALU ( // Changed moduleName to ALU
 
 
             4'b1000: begin // EQUAL
-                alu_result_int = (operand1_in == operand2_in) ? 32'd1 : 32'd0;
-                //$display("Equal worked: %d", alu_result_int);
+                alu_result_int = (operand1_in == operand2_in) ? 32'd0 : 32'd1;
+                $display("Equal worked: %d", alu_result_int);
             end
 
 
@@ -82,10 +82,8 @@ module ALU ( // Changed moduleName to ALU
         endcase
     end
 
-    // Assign the internal register to the output wire
     assign alu_result = alu_result_int;
     
-    // Zero flag assignment - this is correct!
-    assign zero = (alu_result_int == 32'b0) ? 1'b1 : 1'b0; // Use alu_result_int for consistency
+    assign zero = (alu_result_int == 32'b0) ? 1'b1 : 1'b0;
 
 endmodule

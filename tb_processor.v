@@ -15,7 +15,10 @@ module processor_tb;
 
     // Clock Generation
     always begin
-        #10 clk = ~clk; // Clock period of 10ns (5ns high, 5ns low)
+        #10 clk = ~clk; // Clock period of 20ns
+    end
+
+    always @(posedge clk) begin
         $display("-------------------CLK Change-----------------");
     end
 
@@ -24,38 +27,31 @@ module processor_tb;
         clk = 0;   // Initialize clock
         reset = 0; // Assert reset
 		
-		#2
+		#15
 		reset = 1;
 
-        #2
+        #10
         reset = 0;
 
-        // Run simulation for a certain duration
-        #200; // Simulate for 200ns (20 clock cycles)
+        #200; // Simulate for 200ns (10 clock cycles)
         $finish; // End simulation
     end
 
-    // Monitor signals (for debugging and verification)
     initial begin
-        // Dump waves for GTKWave
-        $dumpfile("processor.vcd");
-        $dumpvars(0, processor_tb); // Dump all signals in the testbench
+        // $dumpfile("processor.vcd");
+        // $dumpvars(0, processor_tb); // Dump all signals in the testbench
 
-        // Display key information
         $display("----------------------------------------");
         $display("Starting RISC-V Single-Cycle Processor Testbench");
         $display("Time  | PC        | Curr.Instruction | Next.Instruction| Regs[x2]| ALU_Out   | Mem_Out");
         $display("------+-----------+-------------+---------+---------+-----------+---------");
 
-        // Monitor at regular intervals or on clock edges
-        // Note: Using $monitor is good for simple prints, but can be verbose.
-        // For detailed analysis, use GTKWave with the VCD file.
         $monitor("%0t | 0x%d | 0x%h | 0x%d | 0x%b | 0x%b ",
                  $time, dut.current_PC, dut.current_instr,
-                 dut.alu_out, dut.alu_select, // Assuming x1, x2 are indices 1, 2
+                 dut.alu_out, dut.alu_select,
                  dut.reg_write_en);
         
-        //$monitor("%0t | 0x%d", $time, dut.current_PC)
+        $monitor("Current PC: 0x%d", dut.current_PC);
 
     end
 

@@ -3,7 +3,7 @@ module instruction_memory (
     output reg  [31:0] instr_out 
 );
 
-    reg [31:0] mem [0:7]; // 1024 words, 32 bits each (4KB instruction memory)
+    reg [31:0] mem [0:20]; // 1024 words, 32 bits each (4KB instruction memory)
 
     // The file "instructions.mem" should contain hexadecimal MIPS instructions, one per line.
     initial begin
@@ -24,7 +24,7 @@ module instruction_memory (
     */
 
     always @(*) begin
-        if (addr[31:2] < 10) begin // Check if the word address is within memory bounds
+        if (addr[31:2] < 20) begin // Check if the word address is within memory bounds
 
             instr_out = mem[addr[31:2]]; // Use bits 31 down to 2 as the word address
             $display("Curr instr out: 0x%h", instr_out);
