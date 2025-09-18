@@ -5,7 +5,7 @@ Instructions followed from pg. 185 at [RISV_Instruction_Set](https://lists.riscv
 
 All basic instructions like R TYPE, load, store and branch instructions.
 
-```verilog
+```txt
 00000000000000000000000000000000         // No instruction at start
 000000000100_00000_010_00010_0000011     // lw x2, 1(x0)    - count
 000000001100_00000_010_00100_0000011     // lw x4, 3(x0)    - amount added = 1
