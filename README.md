@@ -6,7 +6,7 @@ Instructions followed from pg. 185 at [RISV_Instruction_Set](https://lists.riscv
 All basic instructions like R TYPE, load, store and branch instructions.
 
 
-<div style="border:1px solid #ccc; padding:15px;">
+<div style="border:1px solid #e45454ff; padding:15px;">
 # Running simulation...
 # Instruction Memory loaded from instructions.mem
 # Program Memory loaded from program.mem
