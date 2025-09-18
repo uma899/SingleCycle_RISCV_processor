@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="color: white; background-color: black; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <h1>Test Case 1</h1>
+    <h3>Instructions</h3>
+    <p>Sum of first 10 whole numbers</p>
+    <div style="min-width: 1000px; overflow-x: scroll; background-color: rgb(60, 60, 60); border-radius: 20px; padding: 20px; font-family: 'Courier New', Courier, monospace;">
+        00000000000000000000000000000000         // No instruction at start  <br>
+        000000000100_00000_010_00010_0000011     // lw x2, 1(x0)    - count  <br>
+        000000001100_00000_010_00100_0000011     // lw x4, 3(x0)    - amount added = 1  <br>
+        000000001000_00000_010_00011_0000011     // lw x3, 2(x0)    - initial sum = 0  <br>
+        000000010000_00000_010_00101_0000011     // lw x5, 4(x0)    - initial count = 1  <br>
+        0000000_00101_00011_000_00011_0110011    // add x3, x3, x5  <br>
+        0000000_00100_00101_000_00101_0110011    // add x5, x5, x4  <br>
+        0_000000_00101_00010_000_1000_0_1100011  // beq x5, x2, 4  <br>
+        1_0000001100_0_00000000_00111_1101111    // jal x7, -12  <br>
+        0000000_00011_00000_010_00000_0100011    // sw x3, 0(x0)      <br>
+    </div>
+
+    <h3>Output</h3>
+
+    <div style="min-width: 1000px; overflow-x: scroll; background-color: rgb(60, 60, 60); border-radius: 20px; padding: 20px; font-family: 'Courier New', Courier, monospace;">
+        
+        # Running simulation... <br>
+        # Instruction Memory loaded from instructions.mem <br>
+        # Program Memory loaded from program.mem <br>
+        # ---------------------------------------- <br>
+        # Starting RISC-V Single-Cycle Processor Testbench <br>
+        # Time  | PC        | Curr.Instruction | Next.Instruction| Regs[x2]| ALU_Out   | Mem_Out <br>
+        # ------+-----------+-------------+---------+---------+-----------+--------- <br>
+        # PC reset! <br>
+        # Error: Instruction memory address 0xxxxxxxxx out of bounds at time                    0 <br>
+        # Unknown Task - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # ADD worked, result:          x <br>
+        # Curr instr out: 0x00000000 <br>
+        # ADD - alu_CU <br>
+        # Unknown Opcode - Control Unit <br>
+        # ADD worked, result:          0 <br>
+        # Current PC: 0x         0 <br>
+        # Initial Register status <br>
+        # Address     |   Value <br>
+        # 00000000   |          0 <br>
+        # 00000001   |          x <br>
+        # 00000002   |          x <br>
+        # 00000003   |          x <br>
+        # 00000004   |          x <br>
+        # 00000005   |          x <br>
+        # 00000006   |          x <br>
+        # 00000007   |          x <br>
+        # Initial Mem status <br>
+        # Address     |   Value <br>
+        # 00000000   |          1 <br>
+        # 00000001   |         10 <br>
+        # 00000002   |          0 <br>
+        # 00000003   |          1 <br>
+        # 00000004   |          1 <br>
+        # 00000005   | 3735928559 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00402103 <br>
+        # SLT - alu_CU <br>
+        # L type - from CU <br>
+        # Calculating offset for Load/Store - alu_CU <br>
+        # ADD worked, result:          4 <br>
+        # Current PC: 0x         4 <br>
+        # Reg File wrote 10 at, 2 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00c02203 <br>
+        # ADD worked, result:         12 <br>
+        # Current PC: 0x         8 <br>
+        # Reg File wrote 1 at, 4 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00802183 <br>
+        # ADD worked, result:          8 <br>
+        # Current PC: 0x        12 <br>
+        # Reg File wrote 0 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x01002283 <br>
+        # ADD worked, result:         16 <br>
+        # Current PC: 0x        16 <br>
+        # Reg File wrote 1 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD worked, result:          5 <br>
+        # Calculating offset for Load/Store - alu_CU <br>
+        # R type - from CU <br>
+        # ADD - alu_CU <br>
+        # ADD worked, result:          1 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 1 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:          2 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 2 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:          3 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         12 <br>
+        # Equal worked:          1, compared         10          2 <br>
+        # Current PC: 0x        28 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x818003ef <br>
+        # Branch - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # Equal worked:          X, compared          0          x <br>
+        # ADD worked, result:          x <br>
+        # Current PC: 0x        32 <br>
+        # Reg File wrote 36 at, 7 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD - alu_CU <br>
+        # R type - from CU <br>
+        # ADD worked, result:          3 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 3 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:          5 <br>
+        # ADD worked, result:          3 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 3 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:          4 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         13 <br>
+        # Equal worked:          1, compared         10          3 <br>
+        # Current PC: 0x        28 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x818003ef <br>
+        # Branch - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # Equal worked:          X, compared          0          x <br>
+        # ADD worked, result:          x <br>
+        # Current PC: 0x        32 <br>
+        # Reg File wrote 36 at, 7 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD - alu_CU <br>
+        # R type - from CU <br>
+        # ADD worked, result:          6 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 6 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:          9 <br>
+        # ADD worked, result:          4 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 4 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:          5 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         14 <br>
+        # Equal worked:          1, compared         10          4 <br>
+        # Current PC: 0x        28 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x818003ef <br>
+        # Branch - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # Equal worked:          X, compared          0          x <br>
+        # ADD worked, result:          x <br>
+        # Current PC: 0x        32 <br>
+        # Reg File wrote 36 at, 7 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD - alu_CU <br>
+        # R type - from CU <br>
+        # ADD worked, result:         10 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 10 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:         14 <br>
+        # ADD worked, result:          5 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 5 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:          6 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         15 <br>
+        # Equal worked:          1, compared         10          5 <br>
+        # Current PC: 0x        28 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x818003ef <br>
+        # Branch - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # Equal worked:          X, compared          0          x <br>
+        # ADD worked, result:          x <br>
+        # Current PC: 0x        32 <br>
+        # Reg File wrote 36 at, 7 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD - alu_CU <br>
+        # R type - from CU <br>
+        # ADD worked, result:         15 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 15 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:         20 <br>
+        # ADD worked, result:          6 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 6 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:          7 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         16 <br>
+        # Equal worked:          1, compared         10          6 <br>
+        # Current PC: 0x        28 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x818003ef <br>
+        # Branch - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # Equal worked:          X, compared          0          x <br>
+        # ADD worked, result:          x <br>
+        # Current PC: 0x        32 <br>
+        # Reg File wrote 36 at, 7 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD - alu_CU <br>
+        # R type - from CU <br>
+        # ADD worked, result:         21 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 21 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:         27 <br>
+        # ADD worked, result:          7 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 7 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:          8 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         17 <br>
+        # Equal worked:          1, compared         10          7 <br>
+        # Current PC: 0x        28 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x818003ef <br>
+        # Branch - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # Equal worked:          X, compared          0          x <br>
+        # ADD worked, result:          x <br>
+        # Current PC: 0x        32 <br>
+        # Reg File wrote 36 at, 7 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD - alu_CU <br>
+        # R type - from CU <br>
+        # ADD worked, result:         28 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 28 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:         35 <br>
+        # ADD worked, result:          8 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 8 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:          9 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         18 <br>
+        # Equal worked:          1, compared         10          8 <br>
+        # Current PC: 0x        28 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x818003ef <br>
+        # Branch - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # Equal worked:          X, compared          0          x <br>
+        # ADD worked, result:          x <br>
+        # Current PC: 0x        32 <br>
+        # Reg File wrote 36 at, 7 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD - alu_CU <br>
+        # R type - from CU <br>
+        # ADD worked, result:         36 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 36 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:         44 <br>
+        # ADD worked, result:          9 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 9 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:         10 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         19 <br>
+        # Equal worked:          1, compared         10          9 <br>
+        # Current PC: 0x        28 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x818003ef <br>
+        # Branch - alu_CU <br>
+        # J type - from CU <br>
+        # Unkown case - alu_CU <br>
+        # Equal worked:          X, compared          0          x <br>
+        # ADD worked, result:          x <br>
+        # Current PC: 0x        32 <br>
+        # Reg File wrote 36 at, 7 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x005181b3 <br>
+        # ADD - alu_CU <br>
+        # R type - from CU <br>
+        # ADD worked, result:         45 <br>
+        # Current PC: 0x        20 <br>
+        # Reg File wrote 45 at, 3 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x004282b3 <br>
+        # ADD worked, result:         54 <br>
+        # ADD worked, result:         10 <br>
+        # Current PC: 0x        24 <br>
+        # Reg File wrote 10 at, 5 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00510863 <br>
+        # B type - from CU <br>
+        # ADD worked, result:         11 <br>
+        # Branch - alu_CU <br>
+        # ADD worked, result:         20 <br>
+        # Equal worked:          0, compared         10         10 <br>
+        # Current PC: 0x        28 <br>
+        # Branch Taken <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0x00302023 <br>
+        # Branch - alu_CU <br>
+        # S type - from CU <br>
+        # Calculating offset for Load/Store - alu_CU <br>
+        # Equal worked:          0, compared          0          0 <br>
+        # ADD worked, result:          0 <br>
+        # Current PC: 0x        36 <br>
+        # Mem wrote         45 into          0 mem block <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0xxxxxxxxx <br>
+        # ADD worked, result:          x <br>
+        # Calculating offset for Load/Store - alu_CU <br>
+        # Unknown Opcode - Control Unit <br>
+        # ADD worked, result:          x <br>
+        # Unkown case - alu_CU <br>
+        # Current PC: 0x        40 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0xxxxxxxxx <br>
+        # Current PC: 0x        44 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0xxxxxxxxx <br>
+        # Current PC: 0x        48 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0xxxxxxxxx <br>
+        # Current PC: 0x        52 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0xxxxxxxxx <br>
+        # Current PC: 0x        56 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0xxxxxxxxx <br>
+        # Current PC: 0x        60 <br>
+        # Initial Register status <br>
+        # Address     |   Value <br>
+        # 00000000   |          0 <br>
+        # 00000001   |          x <br>
+        # 00000002   |         10 <br>
+        # 00000003   |         45 <br>
+        # 00000004   |          1 <br>
+        # 00000005   |         10 <br>
+        # 00000006   |          x <br>
+        # 00000007   |         36 <br>
+        # Final Mem status <br>
+        # Address     |   Value <br>
+        # 00000000   |         45 <br>
+        # 00000001   |         10 <br>
+        # 00000002   |          0 <br>
+        # 00000003   |          1 <br>
+        # 00000004   |          1 <br>
+        # 00000005   | 3735928559 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0xxxxxxxxx <br>
+        # Current PC: 0x        64 <br>
+        # -------------------CLK Change----------------- <br>
+        # Curr instr out: 0xxxxxxxxx <br>
+        # Stopping transcript logging. <br>
+</div>
+</body>
+</html>
