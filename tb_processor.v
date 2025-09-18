@@ -30,35 +30,34 @@ module processor_tb;
         #10
         reset = 0;
 
+        //$display("Initial Register status");
+        //$display("Address     |   Value");
+        //for (integer i = 0; i < 8 ; i = i + 1) begin
+        //    $display("%x   | %d", i, dut.regFile.temp_reg[i]);
+        //end
 
-        $display("Initial Register status");
-        $display("Address     |   Value");
-        for (integer i = 0; i < 8 ; i = i + 1) begin
-            $display("%x   | %d", i, dut.regFile.temp_reg[i]);
-        end
-
-        $display("Initial Mem status");
-        $display("Address     |   Value");
-        for (integer i = 0; i < 6 ; i = i + 1) begin
-            $display("%x   | %d", i, dut.MEMaccess.mem[i]);
-        end
+        //$display("Initial Mem status");
+        //$display("Address     |   Value");
+        //for (integer i = 0; i < 6 ; i = i + 1) begin
+        //    $display("%x   | %d", i, dut.MEMaccess.mem[i]);
+        //end
 
 
 
         #920
 
-        $display("Initial Register status");
-        $display("Address     |   Value");
-        for (integer i = 0; i < 8 ; i = i + 1) begin
-            $display("%x   | %d", i, dut.regFile.temp_reg[i]);
-        end
+        //$display("Initial Register status");
+        //$display("Address     |   Value");
+        //for (integer i = 0; i < 8 ; i = i + 1) begin
+        //    $display("%x   | %d", i, dut.regFile.temp_reg[i]);
+        //end
 
-        $display("Final Mem status");
-        $display("Address     |   Value");
-        for (integer i = 0; i < 6 ; i = i + 1) begin
-            $display("%x   | %d", i, dut.MEMaccess.mem[i]);
-        end
-        #1000;
+        //$display("Final Mem status");
+        //$display("Address     |   Value");
+        //for (integer i = 0; i < 6 ; i = i + 1) begin
+        //    $display("%x   | %d", i, dut.MEMaccess.mem[i]);
+        //end
+        //#1000;
         $finish; // End simulation
     end
 

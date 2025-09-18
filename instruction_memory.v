@@ -6,8 +6,8 @@ module instruction_memory (
     reg [31:0] mem [0:20]; // 1024 words, 32 bits each (4KB instruction memory)
 
     initial begin
-        // $readmemh("instructions.mem", mem);
-        $readmemb("sum.mem", mem);
+        $readmemh("instructions.mem", mem);
+        //$readmemb("sum.mem", mem);
         $display("Instruction Memory loaded from instructions.mem");            
     end
 

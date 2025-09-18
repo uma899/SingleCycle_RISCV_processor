@@ -15,10 +15,10 @@ module register_file (
 			temp_reg[0] = 32'b0;  // Others are uninitialised
 
             /* Dummy data initialised */
-            // temp_reg[3] = 32'd4;
-            // temp_reg[4] = 32'd12;
-            // temp_reg[11] = 32'd24;
-            // temp_reg[12] = 32'd8;
+            temp_reg[3] = 32'd4;
+            temp_reg[4] = 32'd12;
+            temp_reg[11] = 32'd24;
+            temp_reg[12] = 32'd8;
 
             // $display("Reg File reset!");
             
