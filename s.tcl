@@ -51,7 +51,7 @@ add wave -position insertpoint sim:/processor_tb/*
 
 # --- 6. Run the simulation ---
 puts "Running simulation..."
-run 250 ns
+run 950 ns
 
 # --- 7. Optional: Save waveform and exit ModelSim ---
 # Uncomment the lines below if you want to automatically save the waveform and exit ModelSim

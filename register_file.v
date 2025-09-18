@@ -10,43 +10,20 @@ module register_file (
 );
 
     reg [31:0] temp_reg [0:31];
-  /*  initial begin
-        temp_reg[0] = 32'b0; // Explicitly set $zero register
-
-        temp_reg[1] = 32'd10;
-        temp_reg[2] = 32'd15;
-        temp_reg[7] = 32'd0;
-        temp_reg[8] = 32'd1;
-
-        
-    end*/
-
-    // 2. Synchronous Write Logic
-    // This part is for writing data into the registers.
-    // Writes should happen on the positive clock edge, controlled by reg_write_en.
-    always @(posedge clk, reset) begin // Only sensitive to clock for writes
+    always @(posedge clk, reset) begin
         if (reset) begin
-            // Due to no reason, it is not needed. But don't know why it isthere as input
-			temp_reg[0] = 32'b0; // Explicitly set $zero register
+			temp_reg[0] = 32'b0;  // Others are uninitialised
 
-            temp_reg[3] = 32'd4;
-            temp_reg[4] = 32'd12;
+            /* Dummy data initialised */
+            // temp_reg[3] = 32'd4;
+            // temp_reg[4] = 32'd12;
+            // temp_reg[11] = 32'd24;
+            // temp_reg[12] = 32'd8;
 
-            temp_reg[11] = 32'd24;
-            temp_reg[12] = 32'd8;
-            temp_reg[7] = 32'd0;
-            temp_reg[8] = 32'd4;
+            // $display("Reg File reset!");
             
-            temp_reg[22] = 32'd19;
-
-            temp_reg[16] = 32'h0000000c;
-
-
-            $display("Reg File reset!");
-            
-        end else if (reg_write_en && !reset) begin // Only write if write enable is high
-            // Do not write to R0 (write_reg_addr == 0)
-            if (write_reg_addr != 5'b0) begin // 5'b0 ensures comparison with a 5-bit zero
+        end else if (reg_write_en && !reset) begin
+            if (write_reg_addr != 5'b0) begin
                 temp_reg[write_reg_addr] <= write_data;
 
                 $display("Reg File wrote %0d at, %0d", write_data, write_reg_addr);

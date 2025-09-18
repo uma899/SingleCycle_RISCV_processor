@@ -67,7 +67,7 @@ module ALU ( // Changed moduleName to ALU
 
             4'b1000: begin // EQUAL
                 alu_result_int = (operand1_in == operand2_in) ? 32'd0 : 32'd1;
-                $display("Equal worked: %d", alu_result_int);
+                $display("Equal worked: %d, compared %d %d", alu_result_int, operand1_in, operand2_in);
             end
 
 

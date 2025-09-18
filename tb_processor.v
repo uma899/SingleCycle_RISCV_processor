@@ -25,15 +25,40 @@ module processor_tb;
     // Initial Stimulus
     initial begin
         clk = 0;   // Initialize clock
-        reset = 0; // Assert reset
-		
-		#15
-		reset = 1;
+        reset = 1; // Assert reset
 
         #10
         reset = 0;
 
-        #200; // Simulate for 200ns (10 clock cycles)
+
+        $display("Initial Register status");
+        $display("Address     |   Value");
+        for (integer i = 0; i < 8 ; i = i + 1) begin
+            $display("%x   | %d", i, dut.regFile.temp_reg[i]);
+        end
+
+        $display("Initial Mem status");
+        $display("Address     |   Value");
+        for (integer i = 0; i < 6 ; i = i + 1) begin
+            $display("%x   | %d", i, dut.MEMaccess.mem[i]);
+        end
+
+
+
+        #920
+
+        $display("Initial Register status");
+        $display("Address     |   Value");
+        for (integer i = 0; i < 8 ; i = i + 1) begin
+            $display("%x   | %d", i, dut.regFile.temp_reg[i]);
+        end
+
+        $display("Final Mem status");
+        $display("Address     |   Value");
+        for (integer i = 0; i < 6 ; i = i + 1) begin
+            $display("%x   | %d", i, dut.MEMaccess.mem[i]);
+        end
+        #1000;
         $finish; // End simulation
     end
 

@@ -36,9 +36,10 @@ module data_memory (
             end else begin
                 $display("Error: Data Memory Write Address 0x%h out of bounds at time %t", addr, $time);
             end
-        end else begin
+        end 
+        /* else begin
             $display("Unknown - mem");
-        end    
+        end     */
     end
 
 /*     always @(*) begin
