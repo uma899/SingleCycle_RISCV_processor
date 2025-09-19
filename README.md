@@ -11,6 +11,8 @@ Few tests were ran to check this processor's functionality.
 | S. No. | TestCase | Used instructions |
 |:-----------|:------------:|------------:|
 | 1     | Sum of 10 whole numbers       | Load, add, branch, jump, store      |
-| 2        | test2     | qwerty..         |
 
 Complete instructions used and outputs can be found at [Simulation Logs](https://uma899.github.io/SingleCycle_RISCV_processor/)
+
+## Further development
+Still ADDI, LUI type instructions need to be implemented. Looking forward to make this pipelined and add few more modules like branch predictors, cache etc..

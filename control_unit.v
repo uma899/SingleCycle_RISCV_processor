@@ -1,7 +1,7 @@
 module control_unit (
     input  [6:0] opcode,
 
-    output reg reg_dst,        // 1 for R-type (rd), 0 for I-type (rt)
+    // output reg reg_dst,        // 1 for R-type (rd), 0 for I-type (rt)
     output reg jump,
     output reg branch,
     output reg mem_read_en,
@@ -17,7 +17,7 @@ module control_unit (
     // Initialize to 0 (de-asserted) or a safe default
     always @(*) begin
         // Default values for all control signals
-        reg_dst        = 1'b0;
+        // reg_dst        = 1'b0;
         jump           = 1'b0;
         branch         = 1'b0;
         mem_read_en    = 1'b0;
@@ -30,7 +30,7 @@ module control_unit (
         case (opcode)
             // R-TYPE (ADD, SUB, AND, OR, XOR, SLL, SRL, SLT etc. - all have opcode 7'b011001)
             7'b0110011: begin // R-type instructions (e.g., add, sub, and, or, xor, sll, srl, slt)
-                reg_dst        = 1'b1;     // Destination is rd (Instruction[15:11])
+                // reg_dst        = 1'b1;     // Destination is rd (Instruction[15:11])
                 alu_src        = 1'b0;     // Second ALU operand comes from Read_Data2
                 reg_write_en   = 1'b1;     // Write result back to register file
                 alu_op         = 2'b00;    // Signal to ALU_Control that it's an R-type operation
@@ -43,7 +43,7 @@ module control_unit (
             // I-TYPE 
             //(Arithmetic/Logical Immediate - ADDI, XORI, ORI, ANDI, SLLI, SRLI, SRAI, SLTI, SLTUI)
             7'b0010011: begin
-                reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
+                // reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
                 alu_src        = 1'b1;     // Second ALU operand comes from sign-extended immediate
                 reg_write_en   = 1'b1;     // Write result back to register file
                 alu_op         = 2'b01;    // Signal for I-type ALU operation (e.g., ADD for ADDI)
@@ -53,7 +53,7 @@ module control_unit (
             // I-TYPE
             // LOAD TYPE (LW, LH, LB, LHU, LBU - all have opcode 7'b000001)
             7'b0000011: begin
-                reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
+                // reg_dst        = 1'b0;     // Destination is rt (Instruction[20:16])
                 alu_src        = 1'b1;     // ALU calculates address: base_reg + sign_extended_immediate
                 mem_read_en    = 1'b1;     // Enable Data Memory read
                 mem_to_reg     = 1'b1;     // Write data from memory to register
@@ -75,7 +75,7 @@ module control_unit (
 
             // B-TYPE (Branch Instructions - BEQ, BNE, BLT, BGE etc. - all have opcode 7'b110001)
             7'b1100011: begin
-                reg_dst        = 1'b1;
+                // reg_dst        = 1'b1;
                 branch         = 1'b1;     // Enable branch logic (conditional on Zero flag)
                // alu_src        = 1'b0;     // ALU performs subtraction (Rs1 - Rs2) to set Zero flag for BEQ/BNE
                 reg_write_en   = 1'b0;     // No register write for branch instructions
@@ -87,7 +87,7 @@ module control_unit (
             // J-TYPE (JAL - Jump And Link - opcode 7'b110111)
             7'b1101111: begin
                 jump           = 1'b1;     // Enable jump logic
-                reg_dst        = 1'b1;     // Write PC+4 to rd (R31 for MIPS, or specific rd for RISC-V JAL)
+                // reg_dst        = 1'b1;     // Write PC+4 to rd (R31 for MIPS, or specific rd for RISC-V JAL)
                 reg_write_en   = 1'b1;     // Write PC+4 to link register (e.g., x1 for RISC-V)
                 alu_op         = 2'b00;    // No ALU operation needed, but set a default
                                             // Or use a specific code if ALU needs to pass PC+4

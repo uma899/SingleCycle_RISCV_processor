@@ -34,7 +34,7 @@ module processor (
 
 
 
-    wire reg_dst;   // To distingush between Load type from others. 0 => load, 1 => others
+    //wire reg_dst;   // To distingush between Load type from others. 0 => load, 1 => others
     wire [1:0] alu_op;
 
     wire mem_read_en;
@@ -47,7 +47,7 @@ module processor (
     
     control_unit CU (
         current_instr [6:0],
-        reg_dst,
+        //reg_dst,
         jump,
         branch,
         mem_read_en, mem_to_reg,

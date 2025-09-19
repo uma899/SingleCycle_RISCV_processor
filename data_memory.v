@@ -31,7 +31,7 @@ module data_memory (
             if (addr[31:2] < 28) begin // Check against the declared size (1M words)
                 mem[addr[31:2]] <= write_data_in;
 
-                $display("Mem wrote %d into %d mem block", write_data_in, addr[31:2]);
+                $display("Mem wrote %d into %d + 1 mem block", write_data_in, addr[31:2]);
 
             end else begin
                 $display("Error: Data Memory Write Address 0x%h out of bounds at time %t", addr, $time);

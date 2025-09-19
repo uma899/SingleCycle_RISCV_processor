@@ -1,13 +1,8 @@
 # Cleaning up existing 'work' library...
-# Error 31: Unable to unlink file "C:/Users/UMA MAHESH/Desktop/verilog/mipS_processor/src/work/_lib1_0.qpg".
-# Error 31: Unable to unlink file "C:/Users/UMA MAHESH/Desktop/verilog/mipS_processor/src/work/_lib1_0.qtl".
-# Error 133: Unable to remove directory "C:/Users/UMA MAHESH/Desktop/verilog/mipS_processor/src/work".
 # Creating and mapping 'work' library...
-# ** Error: (vlib-35) Failed to create directory "work".
-# File exists. (errno = EEXIST)
 # Compiling Verilog design files and testbench...
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 23:10:39 on Sep 18,2025
+# Start time: 18:58:19 on Sep 19,2025
 # vlog -reportprogress 300 -sv -mfcu alu_control_unit.v alu.v control_unit.v data_memory.v instruction_memory.v mux2_to_1.v pc_unit.v processor.v program_counter.v register_file.v sign_extender.v tb_PC.v tb_processor.v 
 # -- Compiling module alu_control_unit
 # -- Compiling module ALU
@@ -28,14 +23,14 @@
 # 	sign_extender
 # 	testbench_pc_unit
 # 	processor_tb
-# End time: 23:10:39 on Sep 18,2025, Elapsed time: 0:00:00
+# End time: 18:58:19 on Sep 19,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Compilation initiated. Check the transcript window for any errors (and now in simulation_transcript.log).
 # Starting simulation of work.processor_tb...
-# End time: 23:10:41 on Sep 18,2025, Elapsed time: 0:07:04
+# End time: 18:58:20 on Sep 19,2025, Elapsed time: 0:02:22
 # Errors: 0, Warnings: 0
 # vsim work.processor_tb 
-# Start time: 23:10:41 on Sep 18,2025
+# Start time: 18:58:20 on Sep 19,2025
 # Loading sv_std.std
 # Loading work.processor_tb
 # Loading work.processor
@@ -79,17 +74,17 @@
 # Calculating offset for Load/Store - alu_CU
 # ADD worked, result:         12
 # Current PC: 0x         8
-# Reg File wrote 1 at, 5
+# Reg File wrote 9 at, 5
 # -------------------CLK Change-----------------
-# Curr instr out: 0x00a22423
+# Curr instr out: 0x00a02423
 # ADD worked, result:         14
 # S type - from CU
-# ADD worked, result:         20
+# ADD worked, result:          8
 # Current PC: 0x        12
-# Mem wrote         16 into          5 mem block
+# Mem wrote         16 into          2 mem block
 # -------------------CLK Change-----------------
 # Curr instr out: 0x0080016f
-# ADD worked, result:         14
+# ADD worked, result:          2
 # Calculating offset for Load/Store - alu_CU
 # J type - from CU
 # ADD - alu_CU
@@ -133,17 +128,17 @@
 # Current PC: 0x        44
 # Branch Taken
 # -------------------CLK Change-----------------
-# Curr instr out: 0x00a22423
+# Curr instr out: 0x00a02423
 # Branch - alu_CU
 # S type - from CU
 # Calculating offset for Load/Store - alu_CU
-# Equal worked:          1, compared         12          8
-# ADD worked, result:         20
+# Equal worked:          1, compared          0          8
+# ADD worked, result:          8
 # Current PC: 0x        12
-# Mem wrote         16 into          5 mem block
+# Mem wrote         16 into          2 mem block
 # -------------------CLK Change-----------------
 # Curr instr out: 0x0080016f
-# ADD worked, result:         14
+# ADD worked, result:          2
 # Calculating offset for Load/Store - alu_CU
 # J type - from CU
 # ADD - alu_CU
@@ -187,17 +182,17 @@
 # Current PC: 0x        44
 # Branch Taken
 # -------------------CLK Change-----------------
-# Curr instr out: 0x00a22423
+# Curr instr out: 0x00a02423
 # Branch - alu_CU
 # S type - from CU
 # Calculating offset for Load/Store - alu_CU
-# Equal worked:          1, compared         12          8
-# ADD worked, result:         20
+# Equal worked:          1, compared          0          8
+# ADD worked, result:          8
 # Current PC: 0x        12
-# Mem wrote         16 into          5 mem block
+# Mem wrote         16 into          2 mem block
 # -------------------CLK Change-----------------
 # Curr instr out: 0x0080016f
-# ADD worked, result:         14
+# ADD worked, result:          2
 # Calculating offset for Load/Store - alu_CU
 # J type - from CU
 # ADD - alu_CU
@@ -241,17 +236,17 @@
 # Current PC: 0x        44
 # Branch Taken
 # -------------------CLK Change-----------------
-# Curr instr out: 0x00a22423
+# Curr instr out: 0x00a02423
 # Branch - alu_CU
 # S type - from CU
 # Calculating offset for Load/Store - alu_CU
-# Equal worked:          1, compared         12          8
-# ADD worked, result:         20
+# Equal worked:          1, compared          0          8
+# ADD worked, result:          8
 # Current PC: 0x        12
-# Mem wrote         16 into          5 mem block
+# Mem wrote         16 into          2 mem block
 # -------------------CLK Change-----------------
 # Curr instr out: 0x0080016f
-# ADD worked, result:         14
+# ADD worked, result:          2
 # Calculating offset for Load/Store - alu_CU
 # J type - from CU
 # ADD - alu_CU
@@ -295,17 +290,17 @@
 # Current PC: 0x        44
 # Branch Taken
 # -------------------CLK Change-----------------
-# Curr instr out: 0x00a22423
+# Curr instr out: 0x00a02423
 # Branch - alu_CU
 # S type - from CU
 # Calculating offset for Load/Store - alu_CU
-# Equal worked:          1, compared         12          8
-# ADD worked, result:         20
+# Equal worked:          1, compared          0          8
+# ADD worked, result:          8
 # Current PC: 0x        12
-# Mem wrote         16 into          5 mem block
+# Mem wrote         16 into          2 mem block
 # -------------------CLK Change-----------------
 # Curr instr out: 0x0080016f
-# ADD worked, result:         14
+# ADD worked, result:          2
 # Calculating offset for Load/Store - alu_CU
 # J type - from CU
 # ADD - alu_CU
@@ -349,17 +344,17 @@
 # Current PC: 0x        44
 # Branch Taken
 # -------------------CLK Change-----------------
-# Curr instr out: 0x00a22423
+# Curr instr out: 0x00a02423
 # Branch - alu_CU
 # S type - from CU
 # Calculating offset for Load/Store - alu_CU
-# Equal worked:          1, compared         12          8
-# ADD worked, result:         20
+# Equal worked:          1, compared          0          8
+# ADD worked, result:          8
 # Current PC: 0x        12
-# Mem wrote         16 into          5 mem block
+# Mem wrote         16 into          2 mem block
 # -------------------CLK Change-----------------
 # Curr instr out: 0x0080016f
-# ADD worked, result:         14
+# ADD worked, result:          2
 # Calculating offset for Load/Store - alu_CU
 # J type - from CU
 # ADD - alu_CU
@@ -403,17 +398,17 @@
 # Current PC: 0x        44
 # Branch Taken
 # -------------------CLK Change-----------------
-# Curr instr out: 0x00a22423
+# Curr instr out: 0x00a02423
 # Branch - alu_CU
 # S type - from CU
 # Calculating offset for Load/Store - alu_CU
-# Equal worked:          1, compared         12          8
-# ADD worked, result:         20
+# Equal worked:          1, compared          0          8
+# ADD worked, result:          8
 # Current PC: 0x        12
-# Mem wrote         16 into          5 mem block
+# Mem wrote         16 into          2 mem block
 # -------------------CLK Change-----------------
 # Curr instr out: 0x0080016f
-# ADD worked, result:         14
+# ADD worked, result:          2
 # Calculating offset for Load/Store - alu_CU
 # J type - from CU
 # ADD - alu_CU

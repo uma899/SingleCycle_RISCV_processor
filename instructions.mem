@@ -1,7 +1,7 @@
 00c58533  // add x10, x11, x12
 40c58533  // sub x10, x11, x12
-0081a283  // lw x5, 8(x3)
-00a22423  // sw x10, 8(x4)
+0081a283  // lw x5, 8(x3) - addr at x3 + 8, or (addr at x3 + 8)/4 +1 th block in memory
+00a22423  // sw x10, 8(x4) - to addr at x4 + 8, or (addr at x4 +8)/4 th block in memory
 0080016f  // jal  x2, 4  - writes below instr to x2 and change pc to pc + offset + 4 (if offset=0, jumps to next instr)
 00a58d33  // add x13, x11, x10
 00c58533  // add x10, x11, x12
