@@ -15,5 +15,5 @@ Few tests were ran to check this processor's functionality.
 Complete instructions used and outputs can be found at [Simulation Logs](https://uma899.github.io/SingleCycle_RISCV_processor/) - Test cases are yet to be added
 
 ## Further development
-Still ADDI, LUI type instructions need to be implemented. Looking forward to make this pipelined and add few more modules like branch predictors, cache etc..
-Planning to write an assembler to convert assembly instructions to machine code. If possible, a basic version of a compiler for C to assembly conversion will be developed on future.
+* Still ADDI, LUI type instructions need to be implemented. Looking forward to make this pipelined and add few more modules like branch predictors, cache etc..
+* Planning to write an assembler to convert assembly instructions to machine code. If possible, a basic version of a compiler for C to assembly conversion will be developed on future.
