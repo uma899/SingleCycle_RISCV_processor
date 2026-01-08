@@ -12,7 +12,7 @@ Few tests were ran to check this processor's functionality.
 |:-----------|:------------:|------------:|
 | 1     | Sum of 10 whole numbers       | Load, add, branch, jump, store      |
 
-Complete instructions used and outputs can be found at [Simulation Logs](https://uma899.github.io/SingleCycle_RISCV_processor/)
+Complete instructions used and outputs can be found at [Simulation Logs](https://uma899.github.io/SingleCycle_RISCV_processor/) - Test cases are yet to be added
 
 ## Further development
 Still ADDI, LUI type instructions need to be implemented. Looking forward to make this pipelined and add few more modules like branch predictors, cache etc..
